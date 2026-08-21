@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>RESULT PORTAL</h1>
+            <h2>STUDENT RESULT</h2>
+        </div>
+
+        <div class="search-box">
+            <div class="input-grid">
+                <div class="input-group">
+                    <label for="institutionSelect">Institution</label>
+                    <select id="institutionSelect">
+                        <option value="Al-Muqadas Science Academy">Al-Muqadas Science Academy</option>
+                        <option value="Pakistan English Grammar High School">Pakistan English Grammar High School</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="classSelect">Class</label>
+                    <select id="classSelect">
+                        <option value="11th">11th</option>
+                        <option value="9th">9th</option>
+                        <option value="10th">10th</option>
+                        <option value="12th">12th</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="rollNo">Roll No</label>
+                <input type="text" id="rollNo" placeholder="Enter Roll No">
+            </div>
+
+            <div class="input-group">
+                <label for="studentName">Student Name</label>
+                <input type="text" id="studentName" placeholder="Enter Student Name">
+            </div>
+
+            <button id="searchBtn">VIEW RESULT</button>
+        </div>
+
+        <div class="result-card">
+            <div class="result-sheet">
+                <div class="result-header">
+                    <div class="institution-name">AL-MUQADAS SCIENCE ACADEMY</div>
+                    <div class="result-title">Provisional Result Intimation</div>
+                    <div class="result-subtitle">11th | Monthly Test Report 2026</div>
+                </div>
+
+                <div class="meta-table">
+                    <div class="meta-row">
+                        <div class="meta-item"><span>Roll No</span><strong id="resultRollNo">-</strong></div>
+                        <div class="meta-item"><span>Name</span><strong id="resultName">-</strong></div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-item"><span>Class Position</span><strong id="classPosition">-</strong></div>
+                        <div class="meta-item"><span>Class</span><strong id="resultClass">-</strong></div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-item"><span>Institute</span><strong id="institutionName">Al-Muqadas Science Academy</strong></div>
+                        <div class="meta-item"><span>Session</span><strong id="resultSession">2026</strong></div>
+                    </div>
+                </div>
+
+                <table class="result-table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Max Marks</th>
+                            <th>Obtained</th>
+                            <th>Percentage</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultSubjects"></tbody>
+                </table>
+
+                <div class="result-summary">
+                    <div class="summary-box">
+                        <span>Total Marks</span>
+                        <strong id="totalMarks">-</strong>
+                    </div>
+                    <div class="summary-box">
+                        <span>Percentage</span>
+                        <strong id="percentage">-</strong>
+                    </div>
+                    <div class="summary-box">
+                        <span>Overall Grade</span>
+                        <strong id="overallGrade">-</strong>
+                    </div>
+                    <div class="summary-box">
+                        <span>Status</span>
+                        <strong id="resultStatus">-</strong>
+                    </div>
+                </div>
+
+                <div class="signature-row">
+                    <div class="signature-box">
+                        <span>Principal Signature</span>
+                    </div>
+                    <div class="signature-box">
+                        <span>Office Seal</span>
+                    </div>
+                </div>
+            </div>
+
+            <button id="printBtn">PRINT RESULT</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
