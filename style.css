@@ -12,6 +12,155 @@ body {
     color: #1d1d1d;
 }
 
+@media (max-width: 768px) {
+    body {
+        padding: 16px 8px;
+    }
+
+    .header {
+        margin-bottom: 18px;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .header h2 {
+        font-size: 17px;
+    }
+
+    .search-box {
+        padding: 14px 12px 12px;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .input-group {
+        margin-bottom: 12px;
+    }
+
+    .input-group label {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .input-group input,
+    .input-group select {
+        font-size: 14px;
+        padding: 10px 11px;
+    }
+
+    .result-card {
+        padding: 8px 6px 10px;
+    }
+
+    .result-sheet {
+        padding: 10px 6px 8px;
+    }
+
+    .institution-name {
+        font-size: 18px;
+    }
+
+    .result-title {
+        font-size: 14px;
+    }
+
+    .result-subtitle {
+        font-size: 11px;
+    }
+
+    .meta-row {
+        grid-template-columns: 1fr;
+    }
+
+    .meta-item {
+        display: block;
+        padding: 8px 10px;
+        min-height: auto;
+    }
+
+    .meta-item:first-child {
+        border-right: none;
+        border-bottom: 1px solid #c8c8c8;
+    }
+
+    .meta-item span,
+    .meta-item strong {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .meta-item span {
+        margin-bottom: 4px;
+        min-width: 0;
+        font-size: 12px;
+    }
+
+    .meta-item strong {
+        font-size: 12px;
+        word-break: break-word;
+    }
+
+    .result-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    .result-table th,
+    .result-table td {
+        min-width: 80px;
+        padding: 7px 6px;
+        font-size: 11px;
+    }
+
+    .result-summary {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 8px;
+    }
+
+    .summary-box {
+        padding: 10px 8px;
+    }
+
+    .summary-box span {
+        font-size: 10px;
+    }
+
+    .summary-box strong {
+        font-size: 15px;
+    }
+
+    .signature-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .signature-box {
+        height: 58px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 420px) {
+    .result-summary {
+        grid-template-columns: 1fr;
+    }
+
+    #searchBtn,
+    #printBtn {
+        width: 100%;
+        font-size: 14px;
+    }
+}
+
 .container {
     max-width: 1100px;
     margin: 0 auto;
