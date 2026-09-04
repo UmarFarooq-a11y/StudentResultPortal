@@ -525,3 +525,30 @@ body {
         white-space: nowrap;
     }
 }
+
+@media print {
+    body,
+    .container,
+    .result-card,
+    .result-sheet {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .result-table {
+        display: table !important;
+        width: 100% !important;
+        table-layout: fixed !important;
+        overflow: visible !important;
+        white-space: normal !important;
+    }
+
+    .result-table th,
+    .result-table td {
+        width: 20%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+}
