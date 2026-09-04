@@ -335,6 +335,7 @@ body {
 
 .result-table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     margin-top: 8px;
     border: 1px solid #b9b9b9;
@@ -427,6 +428,10 @@ body {
 }
 
 @media print {
+    @page {
+        margin: 10mm;
+    }
+
     body {
         background: #fff;
         padding: 0;
@@ -439,7 +444,9 @@ body {
     }
 
     .container {
+        width: 100%;
         max-width: 100%;
+        margin: 0;
     }
 
     .result-card {
@@ -453,6 +460,22 @@ body {
     .result-sheet {
         border: none;
         padding: 0;
+        width: 100%;
+    }
+
+    .result-table {
+        display: table !important;
+        width: 100%;
+        table-layout: fixed;
+        overflow: visible;
+        white-space: normal;
+    }
+
+    .result-table th,
+    .result-table td {
+        width: 20%;
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 }
 
