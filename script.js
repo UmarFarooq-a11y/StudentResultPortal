@@ -15,7 +15,7 @@ function getGrade(percentage) {
     if (percentage >= 80) return "A";
     if (percentage >= 70) return "B";
     if (percentage >= 60) return "C";
-    if (percentage >= 50) return "D";
+    if (percentage >= 40) return "D";
     return "F";
 }
 
@@ -123,12 +123,21 @@ function getSubjectEntries(student) {
                 lower.includes("obtained")
             ) return false;
 
-            if (value === "" || value === null || value === undefined) return false;
-
-            const numericValue = Number(value);
-            return !Number.isNaN(numericValue);
+            return true;
         })
-        .map(([label, value]) => [label, Number(value)]);
+        .map(([label, value]) => {
+            const normalizedValue = normalize(value);
+            const numericValue = Number(value);
+            const isAbsent =
+                value === "" ||
+                value === null ||
+                value === undefined ||
+                normalizedValue === "absent" ||
+                normalizedValue === "-" ||
+                Number.isNaN(numericValue);
+
+            return [label, isAbsent ? null : numericValue];
+        });
 }
 
 function showResult(student) {
@@ -158,30 +167,63 @@ function showResult(student) {
     const subjectEntries = getSubjectEntries(student);
     let totalObtained = 0;
     let totalMax = 0;
+    const unsuccessfulSubjects = [];
 
     subjectEntries.forEach(([subject, numericMarks]) => {
-        const percentage = maxMarks > 0 ? (numericMarks / maxMarks) * 100 : 0;
+        const isAbsent = numericMarks === null;
+        const percentage = !isAbsent && maxMarks > 0 ? (numericMarks / maxMarks) * 100 : 0;
+        const isBelowPassingPercentage = !isAbsent && percentage < 40;
+        const resultMessage = isAbsent
+            ? "Absent"
+            : isBelowPassingPercentage
+                ? "Less than 40%"
+                : null;
 
-        totalObtained += numericMarks;
-        totalMax += maxMarks;
+        if (resultMessage) unsuccessfulSubjects.push(subject);
+
+        if (!isAbsent) {
+            totalObtained += numericMarks;
+            totalMax += maxMarks;
+        }
 
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${subject}</td>
             <td>${maxMarks}</td>
-            <td>${numericMarks}</td>
-            <td>${percentage.toFixed(2)}%</td>
-            <td>${getGrade(percentage)}</td>
+            <td>${isAbsent ? "Absent" : numericMarks}</td>
+            <td>${isAbsent ? "Absent" : resultMessage || `${percentage.toFixed(2)}%`}</td>
+            <td>${isAbsent ? "Absent" : resultMessage || getGrade(percentage)}</td>
         `;
         subjectTable.appendChild(row);
     });
 
     const overallPercentage = totalMax > 0 ? (totalObtained / totalMax) * 100 : 0;
+    const resultSummary = document.getElementById("resultSummary");
 
-    document.getElementById("totalMarks").textContent = `${totalObtained} / ${totalMax}`;
-    document.getElementById("percentage").textContent = `${overallPercentage.toFixed(2)}%`;
-    document.getElementById("overallGrade").textContent = getGrade(overallPercentage);
-    document.getElementById("resultStatus").textContent = overallPercentage >= 50 ? "PASS" : "FAIL";
+    if (unsuccessfulSubjects.length) {
+        resultSummary.classList.add("subject-warning");
+        resultSummary.innerHTML = `<div class="summary-subjects">${unsuccessfulSubjects.join(", ")}</div>`;
+    } else {
+        resultSummary.classList.remove("subject-warning");
+        resultSummary.innerHTML = `
+            <div class="summary-box">
+                <span>Total Marks</span>
+                <strong>${totalObtained} / ${totalMax}</strong>
+            </div>
+            <div class="summary-box">
+                <span>Percentage</span>
+                <strong>${overallPercentage.toFixed(2)}%</strong>
+            </div>
+            <div class="summary-box">
+                <span>Overall Grade</span>
+                <strong>${getGrade(overallPercentage)}</strong>
+            </div>
+            <div class="summary-box">
+                <span>Status</span>
+                <strong>${overallPercentage >= 40 ? "PASS" : "FAIL"}</strong>
+            </div>
+        `;
+    }
 }
 
 // ==========================================

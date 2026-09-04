@@ -385,6 +385,19 @@ body {
 .summary-box strong {
     font-size: 20px;
     color: #111;
+    word-break: break-word;
+}
+
+.result-summary.subject-warning {
+    display: block;
+}
+
+.summary-subjects {
+    padding: 12px 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
 }
 
 .signature-row {
