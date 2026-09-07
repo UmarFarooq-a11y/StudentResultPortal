@@ -5,6 +5,7 @@
 const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxUJ7mPffKrCMBsJb5qsgsgfp3M8zs7OrhPNUaSqLStpdrvV2TMd0AOWmpXIXotUlX9kA/exec";
 
 let students = [];
+let mathAnswer = 0;
 
 function normalize(value) {
     return String(value || "").trim().toLowerCase();
@@ -22,11 +23,51 @@ function getGrade(percentage) {
 function loadStudents(data) {
     students = Array.isArray(data) ? data : [];
     console.log("Students loaded:", students.length);
+
+    const pendingSearch = sessionStorage.getItem("pendingResultSearch");
+    if (pendingSearch) {
+        sessionStorage.removeItem("pendingResultSearch");
+        showResultForSearch(JSON.parse(pendingSearch));
+    }
 }
+
+function generateMathVerification() {
+    const firstNumber = Math.floor(Math.random() * 9) + 1;
+    const secondNumber = Math.floor(Math.random() * 9) + 1;
+    const isAddition = Math.random() >= 0.5;
+    const largerNumber = Math.max(firstNumber, secondNumber);
+    const smallerNumber = Math.min(firstNumber, secondNumber);
+    const leftNumber = isAddition ? firstNumber : largerNumber;
+    const rightNumber = isAddition ? secondNumber : smallerNumber;
+
+    mathAnswer = isAddition ? leftNumber + rightNumber : leftNumber - rightNumber;
+    document.getElementById("mathQuestion").textContent = `${leftNumber} ${isAddition ? "+" : "-"} ${rightNumber} = ?`;
+}
+
+generateMathVerification();
 
 const googleScript = document.createElement("script");
 googleScript.src = GOOGLE_SHEET_URL + "?callback=loadStudents";
 document.body.appendChild(googleScript);
+
+function findStudent(searchDetails) {
+    return students.find(function (item) {
+        const rowRoll = normalize(item["Student ID"] || item["Roll No"]);
+        const rowInstitution = normalize(item.Institution);
+        const rowClass = normalize(item.Class);
+
+        return (
+            rowRoll === normalize(searchDetails.rollNo) &&
+            rowInstitution === normalize(searchDetails.institution) &&
+            rowClass === normalize(searchDetails.className)
+        );
+    });
+}
+
+function showResultForSearch(searchDetails) {
+    const student = findStudent(searchDetails);
+    if (student) showResult(student);
+}
 
 // ==========================================
 // SEARCH BUTTON
@@ -34,12 +75,19 @@ document.body.appendChild(googleScript);
 
 document.getElementById("searchBtn").addEventListener("click", function () {
     const enteredRollNo = document.getElementById("rollNo").value.trim();
-    const enteredName = document.getElementById("studentName").value.trim();
+    const enteredMathAnswer = Number(document.getElementById("mathAnswer").value);
     const selectedInstitution = document.getElementById("institutionSelect").value.trim();
     const selectedClass = document.getElementById("classSelect").value.trim();
 
-    if (!enteredRollNo || !enteredName) {
-        alert("Please enter Roll No and Name.");
+    if (!enteredRollNo) {
+        alert("Please enter Roll No.");
+        return;
+    }
+
+    if (!Number.isInteger(enteredMathAnswer) || enteredMathAnswer !== mathAnswer) {
+        alert("Incorrect verification answer.");
+        document.getElementById("mathAnswer").value = "";
+        generateMathVerification();
         return;
     }
 
@@ -48,26 +96,20 @@ document.getElementById("searchBtn").addEventListener("click", function () {
         return;
     }
 
-    const student = students.find(function (item) {
-        const rowRoll = normalize(item["Student ID"] || item["Roll No"]);
-        const rowName = normalize(item["Name"]);
-        const rowInstitution = normalize(item.Institution);
-        const rowClass = normalize(item.Class);
-
-        return (
-            rowRoll === normalize(enteredRollNo) &&
-            rowName === normalize(enteredName) &&
-            rowInstitution === normalize(selectedInstitution) &&
-            rowClass === normalize(selectedClass)
-        );
-    });
+    const searchDetails = {
+        rollNo: enteredRollNo,
+        institution: selectedInstitution,
+        className: selectedClass
+    };
+    const student = findStudent(searchDetails);
 
     if (!student) {
-        alert("Student not found with this Institution, Class, Roll No and Name.");
+        alert("Student not found with this Institution, Class and Roll No.");
         return;
     }
 
-    showResult(student);
+    sessionStorage.setItem("pendingResultSearch", JSON.stringify(searchDetails));
+    window.location.reload();
 });
 
 // ==========================================

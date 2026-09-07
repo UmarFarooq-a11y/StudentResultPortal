@@ -39,9 +39,9 @@
                 <input type="text" id="rollNo" placeholder="Enter Roll No">
             </div>
 
-            <div class="input-group">
-                <label for="studentName">Student Name</label>
-                <input type="text" id="studentName" placeholder="Enter Student Name">
+            <div class="input-group math-verification">
+                <label for="mathAnswer">Verification: <span id="mathQuestion"></span></label>
+                <input type="number" id="mathAnswer" placeholder="Enter answer" inputmode="numeric">
             </div>
 
             <button id="searchBtn">VIEW RESULT</button>
@@ -70,7 +70,8 @@
                     </div>
                 </div>
 
-                <table class="result-table">
+                <div class="result-table-wrap">
+                    <table class="result-table">
                     <thead>
                         <tr>
                             <th>Subject</th>
@@ -81,7 +82,8 @@
                         </tr>
                     </thead>
                     <tbody id="resultSubjects"></tbody>
-                </table>
+                    </table>
+                </div>
 
                 <div class="result-summary" id="resultSummary">
                     <div class="summary-box">
