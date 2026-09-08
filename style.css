@@ -187,6 +187,21 @@ body {
     margin: 4px auto 0;
 }
 
+.footer-about-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 9px 15px;
+    border-radius: 5px;
+    background: #1c1c1c;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.footer-about-link:hover {
+    background: #3b3b3b;
+}
+
 .header {
     text-align: center;
     margin-bottom: 28px;

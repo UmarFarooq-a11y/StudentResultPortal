@@ -5,7 +5,23 @@
 const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxUJ7mPffKrCMBsJb5qsgsgfp3M8zs7OrhPNUaSqLStpdrvV2TMd0AOWmpXIXotUlX9kA/exec";
 
 let students = [];
+let sheetMetadata = {};
 let mathAnswer = 0;
+let loadedSheetKey = "";
+let activeRequestId = 0;
+
+const SHEET_BY_SELECTION = {
+    "Al-Muqadas Science Academy": {
+        "9th": "ACA_9",
+        "10th": "ACA_10",
+        "11th": "ACA_11",
+        "12th": "ACA_12"
+    },
+    "Pakistan English Grammar High School": {
+        "9th": "PEGHS_9",
+        "10th": "PEGHS_10"
+    }
+};
 
 function normalize(value) {
     return String(value || "").trim().toLowerCase();
@@ -20,8 +36,28 @@ function getGrade(percentage) {
     return "F";
 }
 
-function loadStudents(data) {
-    students = Array.isArray(data) ? data : [];
+function loadStudents(data, requestId = activeRequestId, sheetKey = loadedSheetKey) {
+    if (requestId !== activeRequestId || sheetKey !== getSelectedSheetKey()) {
+        return;
+    }
+
+    if (data && data.error) {
+        students = [];
+        sheetMetadata = {};
+        loadedSheetKey = "";
+        alert(data.error);
+        return;
+    }
+
+    const response = Array.isArray(data) ? { students: data } : (data || {});
+    students = Array.isArray(response.students) ? response.students : [];
+    sheetMetadata = {
+        institution: response.institution || "",
+        info: response.info || "",
+        className: response.className || "",
+        maxMarks: response.maxMarks || ""
+    };
+    loadedSheetKey = response.sheet || sheetKey;
     console.log("Students loaded:", students.length);
 
     const pendingSearch = sessionStorage.getItem("pendingResultSearch");
@@ -46,9 +82,120 @@ function generateMathVerification() {
 
 generateMathVerification();
 
-const googleScript = document.createElement("script");
-googleScript.src = GOOGLE_SHEET_URL + "?callback=loadStudents";
-document.body.appendChild(googleScript);
+function getSelectedSheetKey() {
+    const institution = normalize(document.getElementById("institutionSelect").value);
+    const className = normalize(document.getElementById("classSelect").value);
+    const institutionKey = Object.keys(SHEET_BY_SELECTION).find(function (key) {
+        return normalize(key) === institution;
+    });
+    const classKey = institutionKey && Object.keys(SHEET_BY_SELECTION[institutionKey]).find(function (key) {
+        return normalize(key) === className;
+    });
+
+    return institutionKey && classKey ? SHEET_BY_SELECTION[institutionKey][classKey] : "";
+}
+
+function requestStudents(institution, className) {
+    const normalizedInstitution = normalize(institution);
+    const normalizedClass = normalize(className);
+    const institutionKey = Object.keys(SHEET_BY_SELECTION).find(function (key) {
+        return normalize(key) === normalizedInstitution;
+    });
+    const classKey = institutionKey && Object.keys(SHEET_BY_SELECTION[institutionKey]).find(function (key) {
+        return normalize(key) === normalizedClass;
+    });
+    const sheetKey = institutionKey && classKey
+        ? SHEET_BY_SELECTION[institutionKey][classKey]
+        : "";
+
+    const requestId = ++activeRequestId;
+
+    students = [];
+    sheetMetadata = {};
+    loadedSheetKey = "";
+
+    if (!sheetKey) {
+        return;
+    }
+
+    const callbackName = `loadStudents_${requestId}`;
+    const googleScript = document.createElement("script");
+    window[callbackName] = function (data) {
+        loadStudents(data, requestId, sheetKey);
+        delete window[callbackName];
+        googleScript.remove();
+    };
+    googleScript.src = `${GOOGLE_SHEET_URL}?sheet=${encodeURIComponent(sheetKey)}&callback=${callbackName}`;
+    googleScript.onerror = function () {
+        if (requestId === activeRequestId) {
+            students = [];
+            loadedSheetKey = "";
+            alert("Unable to load result data. Please try again.");
+        }
+        delete window[callbackName];
+        googleScript.remove();
+    };
+    document.body.appendChild(googleScript);
+}
+
+const institutionSelect = document.getElementById("institutionSelect");
+const classSelect = document.getElementById("classSelect");
+
+function getSelectionKey(value, options) {
+    const normalizedValue = normalize(value);
+    return Object.keys(options).find(function (key) {
+        return normalize(key) === normalizedValue;
+    }) || "";
+}
+
+function updateClassOptions() {
+    const institutionKey = getSelectionKey(institutionSelect.value, SHEET_BY_SELECTION);
+    const availableClasses = institutionKey ? Object.keys(SHEET_BY_SELECTION[institutionKey]) : [];
+    const currentClass = getSelectionKey(classSelect.value, SHEET_BY_SELECTION[institutionKey] || {});
+    const preferredClass = currentClass || getSelectionKey("10th", SHEET_BY_SELECTION[institutionKey] || {}) || availableClasses[0] || "";
+
+    classSelect.innerHTML = availableClasses.map(function (className) {
+        return `<option value="${className}">${className}</option>`;
+    }).join("");
+    classSelect.value = preferredClass;
+}
+
+function requestSelectedStudents() {
+    requestStudents(institutionSelect.value.trim(), classSelect.value.trim());
+}
+
+function restorePendingSelection() {
+    const pendingSearch = sessionStorage.getItem("pendingResultSearch");
+    if (!pendingSearch) return;
+
+    try {
+        const searchDetails = JSON.parse(pendingSearch);
+        const institutionOption = Array.from(institutionSelect.options).find(function (option) {
+            return normalize(option.value) === normalize(searchDetails.institution);
+        });
+
+        if (institutionOption) institutionSelect.value = institutionOption.value;
+        updateClassOptions();
+
+        const classOption = Array.from(classSelect.options).find(function (option) {
+            return normalize(option.value) === normalize(searchDetails.className);
+        });
+        if (classOption) classSelect.value = classOption.value;
+    } catch (error) {
+        sessionStorage.removeItem("pendingResultSearch");
+    }
+}
+
+institutionSelect.addEventListener("change", function () {
+    updateClassOptions();
+    requestSelectedStudents();
+});
+classSelect.addEventListener("change", requestSelectedStudents);
+restorePendingSelection();
+updateClassOptions();
+document.getElementById("rollNo").value = "";
+document.getElementById("mathAnswer").value = "";
+requestSelectedStudents();
 
 function findStudent(searchDetails) {
     return students.find(function (item) {
@@ -91,6 +238,12 @@ document.getElementById("searchBtn").addEventListener("click", function () {
         return;
     }
 
+    const selectedSheetKey = getSelectedSheetKey();
+    if (!selectedSheetKey) {
+        alert("Result data for this institution and class is not available yet.");
+        return;
+    }
+
     if (!students.length) {
         alert("Student data is still loading. Please wait a moment.");
         return;
@@ -101,6 +254,12 @@ document.getElementById("searchBtn").addEventListener("click", function () {
         institution: selectedInstitution,
         className: selectedClass
     };
+
+    if (loadedSheetKey !== selectedSheetKey) {
+        alert("Student data is still loading. Please wait a moment.");
+        return;
+    }
+
     const student = findStudent(searchDetails);
 
     if (!student) {
@@ -121,6 +280,7 @@ function getSubjectEntries(student) {
         "institution",
         "class",
         "session",
+        "info",
         "name",
         "student id",
         "roll no",
@@ -185,22 +345,24 @@ function getSubjectEntries(student) {
 function showResult(student) {
     const resultCard = document.querySelector(".result-card");
     resultCard.style.display = "block";
-
-    const maxMarks = Number(student.MaxMarksPerSubject) || 40;
+    const institution = sheetMetadata.institution || student.Institution || "AL-MUQADAS SCIENCE ACADEMY";
+    const className = sheetMetadata.className || student.Class || "11th";
+    const info = sheetMetadata.info || student.Info || "-";
+    const maxMarks = Number(sheetMetadata.maxMarks || student.MaxMarksPerSubject);
 
     document.querySelector(".institution-name").textContent =
-        (student.Institution || "AL-MUQADAS SCIENCE ACADEMY").toUpperCase();
+        institution.toUpperCase();
 
     document.querySelector(".result-title").textContent = "Provisional Result Intimation";
     document.querySelector(".result-subtitle").textContent =
-        `${student.Class || "11th"} | Monthly Test Report 2026`;
+        `${className} | ${info}`;
 
     document.getElementById("resultName").textContent = student["Name"] || "-";
     document.getElementById("resultRollNo").textContent = student["Student ID"] || student["Roll No"] || "-";
     document.getElementById("classPosition").textContent =
         student["Class Position"] || student["Position"] || student.Position || "-";
-    document.getElementById("resultClass").textContent = student.Class || "11th";
-    document.getElementById("institutionName").textContent = student.Institution || "Al-Muqadas Science Academy";
+    document.getElementById("resultClass").textContent = className;
+    document.getElementById("institutionName").textContent = institution;
     document.getElementById("resultSession").textContent = student.Session || "2026";
 
     const subjectTable = document.getElementById("resultSubjects");
