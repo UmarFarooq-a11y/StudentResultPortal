@@ -3,20 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Result Portal</title>
+    <meta name="description" content="Find and review your student examination results in the online portal.">
+    <meta name="theme-color" content="#080d14">
+    <title>Student Results | Pakistan English Grammar High School</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modern.css">
 </head>
-<body>
+<body class="results-page">
+    <header class="portal-nav">
+        <a class="portal-brand" href="index.html">
+            <span class="portal-mark">PE</span>
+            <span><strong>Pakistan English</strong><small>Grammar High School</small></span>
+        </a>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">Our School</a>
+            <a class="active" href="result.html">Results</a>
+            <a href="aboutme.html">About Me</a>
+        </nav>
+        <a class="portal-action" href="about.html">Discover our school <span>↗</span></a>
+    </header>
     <div class="container">
         <div class="header">
-            <h1>RESULT PORTAL</h1>
-            <h2>STUDENT RESULT</h2>
+            <p class="portal-kicker">STUDENT PORTAL <span>·</span> SESSION 2026</p>
+            <h1>Your progress, clearly presented.</h1>
+            <h2>Choose your school and class, then enter your roll number to find your result.</h2>
         </div>
 
         <div class="search-box">
             <div class="input-grid">
                 <div class="input-group">
-                    <label for="institutionSelect">Institution</label>
+                    <label for="institutionSelect">School</label>
                     <select id="institutionSelect">
                         <option value="Al-Muqadas Science Academy">Al-Muqadas Science Academy</option>
                         <option value="Pakistan English Grammar High School">Pakistan English Grammar High School</option>
@@ -35,16 +52,16 @@
             </div>
 
             <div class="input-group">
-                <label for="rollNo">Roll No</label>
-                <input type="text" id="rollNo" placeholder="Enter Roll No">
+                <label for="rollNo">Student roll number</label>
+                <input type="text" id="rollNo" placeholder="Enter your roll number" autocomplete="off">
             </div>
 
             <div class="input-group math-verification">
-                <label for="mathAnswer">Verification: <span id="mathQuestion"></span></label>
+                <label for="mathAnswer">Quick verification <span id="mathQuestion"></span></label>
                 <input type="number" id="mathAnswer" placeholder="Enter answer" inputmode="numeric">
             </div>
 
-            <button id="searchBtn">VIEW RESULT</button>
+            <button id="searchBtn">Find my result <span>→</span></button>
         </div>
 
         <div class="result-card">
@@ -114,19 +131,16 @@
                 </div>
             </div>
 
-            <button id="printBtn">PRINT RESULT</button>
+            <button id="printBtn">Print this result <span>↗</span></button>
         </div>
     </div>
 
     <footer class="site-footer">
-        <p class="footer-copyright">&copy; Al-Muqadas Academy. All rights reserved.</p>
+        <p class="footer-copyright">&copy; 2026 Pakistan English Grammar High School. All rights reserved.</p>
         <p class="footer-developer">
-            Developed by M. Umar (BS IT), IT Specialist, Software Engineer and Full Stack Web Developer
-            at PakBrains Software Company,
-            BWP Branch of Sigma Core USA. Database Administrator, Data and Privacy Expert,
-            certified by Google LLC.
+            Designed and developed by M. Umar Farooq · Learning with purpose, building for what’s next.
         </p>
-        <a class="footer-about-link" href="aboutme.html">View About Me</a>
+        <a class="footer-about-link" href="aboutme.html">Meet the developer <span>↗</span></a>
     </footer>
 
     <script src="script.js"></script>
