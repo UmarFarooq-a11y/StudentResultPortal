@@ -1,768 +1,281 @@
-/* PE Grammar School — unified professional UI layer
-   Presentation-only overrides. Existing HTML, JavaScript, data flow and interactions remain untouched. */
-:root{
-  --ui-bg:#f5f7fb;
-  --ui-paper:#ffffff;
-  --ui-paper-soft:#f8fafc;
-  --ui-ink:#17243a;
-  --ui-muted:#64748b;
-  --ui-line:#e2e8f0;
-  --ui-navy:#123a5a;
-  --ui-navy-deep:#0d2b45;
-  --ui-blue:#2864a8;
-  --ui-gold:#d7a85b;
-  --ui-gold-soft:#fff7e8;
-  --ui-radius:18px;
-  --ui-shadow:0 12px 34px rgba(23,36,58,.07);
-}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body.school-site,body.results-page,body:not(.school-site):not(.results-page){
-  color:var(--ui-ink);
-  background:var(--ui-bg);
-  font-family:Manrope,Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-}
-body.school-site *,body.results-page *,body:not(.school-site):not(.results-page) *{box-sizing:border-box}
-a{transition:color .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+/* Pakistan English Grammar High School — unified light academic design system */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--navy:#173b5e;--navy-dark:#102d49;--blue:#356f9e;--gold:#c79a52;--ink:#1d2b3a;--muted:#647487;--line:#dfe7ef;--bg:#f4f7fb;--paper:#fff;--pale:#edf3f8;--radius:16px;--shadow:0 12px 32px rgba(20,48,76,.075)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:95px}
+body{margin:0;font-family:"DM Sans",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+body.school-site,body.results-page,body:not(.school-site):not(.results-page){color-scheme:light;background:var(--bg);color:var(--ink);font-family:"DM Sans",Arial,sans-serif}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none;transition:color .18s,background .18s,border-color .18s,box-shadow .18s,transform .18s}
 button,input,select,textarea{font:inherit}
-:focus-visible{outline:3px solid rgba(40,100,168,.5)!important;outline-offset:3px!important}
-.container,.page-width{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+:focus-visible{outline:3px solid rgba(53,111,158,.42);outline-offset:3px}
+.container,.page-width{width:min(1160px,calc(100% - 44px));margin-inline:auto}
+h1,h2,h3,h4{font-family:Manrope,"DM Sans",sans-serif;line-height:1.2;letter-spacing:-.035em}
+p{overflow-wrap:break-word}
+button{cursor:pointer}
 
-/* Consistent school header */
-.header,.portal-nav,.topbar{
-  position:sticky;top:0;z-index:50;
-  min-height:78px;padding:0 clamp(18px,4vw,56px);
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  background:rgba(255,255,255,.94)!important;
-  border-bottom:1px solid var(--ui-line)!important;
-  box-shadow:0 4px 18px rgba(23,36,58,.035)!important;
-  backdrop-filter:blur(18px);
+/* Shared school navigation */
+body.school-site .header,body.results-page .portal-nav,body:not(.school-site):not(.results-page) .topbar{
+ position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:22px;
+ min-height:78px;padding:12px max(22px,calc((100% - 1160px)/2));background:rgba(255,255,255,.97)!important;
+ border-bottom:1px solid var(--line)!important;box-shadow:0 4px 20px rgba(20,48,76,.045)!important;backdrop-filter:blur(14px)
 }
-.header .container.navbar{width:100%;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:25px}
-.logo,.portal-brand,.brand{display:flex;align-items:center;gap:12px;text-decoration:none!important;color:var(--ui-ink)!important;flex-shrink:0}
-.logo-mark,.portal-mark,.brand-mark{
-  display:grid;place-items:center;width:44px;height:44px;flex:none;
-  border-radius:13px;background:var(--ui-navy)!important;color:white!important;
-  font-weight:800;letter-spacing:-.05em;box-shadow:0 5px 12px rgba(18,58,90,.16)
+body.school-site .navbar{width:100%;max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:52px}
+body.school-site .logo,body.results-page .portal-brand,body:not(.school-site):not(.results-page) .brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
+body.school-site .logo-mark,body.results-page .portal-mark,body:not(.school-site):not(.results-page) .brand-mark{
+ display:grid;place-items:center;width:44px;height:44px;border-radius:11px;background:var(--navy)!important;color:#fff!important;
+ border:1px solid rgba(199,154,82,.65);font-family:Manrope,sans-serif;font-size:15px;font-weight:800;box-shadow:none
 }
-.logo-text,.portal-brand>span:last-child,.brand>span:last-child{display:grid;line-height:1.3}
-.logo-text strong,.portal-brand strong,.brand strong{font-size:.91rem;font-weight:800;letter-spacing:-.025em}
-.logo-text span,.portal-brand small,.brand small{margin-top:3px;color:var(--ui-muted)!important;font-size:.73rem;letter-spacing:.015em}
-.nav,.menu,.portal-nav nav,.topbar nav{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap}
-.nav a,.menu a,.portal-nav nav a,.topbar nav a{
-  display:inline-flex;align-items:center;min-height:42px;padding:9px 13px;
-  border:1px solid transparent;border-radius:10px;
-  color:var(--ui-muted)!important;text-decoration:none!important;
-  font-size:.83rem;font-weight:700;white-space:nowrap
+body.school-site .logo-text,body.results-page .portal-brand>span:last-child,body:not(.school-site):not(.results-page) .brand>span:last-child{display:flex;flex-direction:column;line-height:1.25}
+body.school-site .logo-text strong,body.results-page .portal-brand strong,body:not(.school-site):not(.results-page) .brand strong{font-size:14px;color:var(--navy)!important;font-weight:800}
+body.school-site .logo-text span,body.results-page .portal-brand small,body:not(.school-site):not(.results-page) .brand small{margin-top:4px;color:var(--muted)!important;font-size:11px;letter-spacing:.02em}
+body.school-site .nav,body.school-site .menu,body.results-page .portal-nav nav,body:not(.school-site):not(.results-page) .topbar nav{display:flex;align-items:center;justify-content:center;gap:4px}
+body.school-site .nav a,body.school-site .menu a,body.results-page .portal-nav nav a,body:not(.school-site):not(.results-page) .topbar nav a{
+ display:inline-flex;align-items:center;padding:10px 12px;border-radius:8px;color:#536579!important;font-size:13px;font-weight:650;white-space:nowrap
 }
-.nav a:hover,.menu a:hover,.portal-nav nav a:hover,.topbar nav a:hover{
-  background:#f1f5f9;color:var(--ui-navy)!important
+body.school-site .nav a:hover,body.school-site .menu a:hover,body.results-page .portal-nav nav a:hover,body:not(.school-site):not(.results-page) .topbar nav a:hover,
+body.school-site .nav a.active,body.school-site .menu a.active,body.results-page .portal-nav nav a.active,body:not(.school-site):not(.results-page) .topbar nav a.active{background:var(--pale)!important;color:var(--navy)!important}
+body.school-site .header-button,body.school-site .result-btn,body.results-page .portal-action,body:not(.school-site):not(.results-page) .top-action{
+ display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 16px;border:1px solid var(--navy)!important;
+ border-radius:9px;background:var(--navy)!important;color:#fff!important;font-size:13px;font-weight:750;white-space:nowrap;box-shadow:none
 }
-.nav a.active,.menu a.active,.portal-nav nav a.active,.topbar nav a.active{
-  background:#edf4fb;color:var(--ui-navy)!important;border-color:#dce8f5
-}
-.header-button,.result-btn,.portal-action,.top-action{
-  display:inline-flex;align-items:center;justify-content:center;gap:12px;
-  min-height:45px;padding:0 17px;border-radius:11px;
-  background:var(--ui-navy)!important;color:#fff!important;border:1px solid var(--ui-navy)!important;
-  font-size:.82rem;font-weight:800;text-decoration:none!important;white-space:nowrap;
-  box-shadow:0 5px 12px rgba(18,58,90,.13)
-}
-.header-button:hover,.result-btn:hover,.portal-action:hover,.top-action:hover{
-  background:var(--ui-blue)!important;transform:translateY(-1px);box-shadow:0 8px 18px rgba(18,58,90,.17)
-}
+body.school-site .header-button:hover,body.school-site .result-btn:hover,body.results-page .portal-action:hover,body:not(.school-site):not(.results-page) .top-action:hover{background:var(--blue)!important;color:#fff!important;transform:translateY(-1px)}
 
-/* Home and school story pages */
-body.school-site main{overflow:clip}
-.hero,.about-hero{
-  position:relative;isolation:isolate;overflow:hidden;
-  background:linear-gradient(115deg,#f0f5fb 0%,#fff 57%,#fff8ed 100%)!important;
-  border-bottom:1px solid var(--ui-line)
+/* Home page */
+body.school-site .hero{padding:74px 0 68px;background:linear-gradient(115deg,#eff5fb 0%,#fff 64%,#fff8ed 100%)!important;color:var(--ink)}
+body.school-site .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:clamp(32px,5vw,70px)}
+body.school-site .hero-content{min-width:0}
+body.school-site .hero-label,body.school-site .eyebrow,body.school-site .section-label,body.school-site .small-title{
+ color:var(--blue)!important;font-size:11px;font-weight:800;letter-spacing:.14em;line-height:1.5
 }
-.hero:before,.about-hero:before{
-  content:"";position:absolute;z-index:-1;right:-150px;top:-190px;width:530px;height:530px;border-radius:50%;
-  border:1px solid rgba(40,100,168,.11);box-shadow:0 0 0 35px rgba(40,100,168,.025),0 0 0 75px rgba(40,100,168,.02)
+body.school-site .hero-label{display:inline-flex;align-items:center;gap:9px;padding:9px 12px;background:#fff;border:1px solid #dce6f0;border-radius:30px}
+body.school-site .hero-label span{width:7px;height:7px;background:var(--gold);border-radius:50%}
+body.school-site .hero h1,body.school-site .about-hero h1{margin:22px 0 18px;color:var(--navy)!important;font-size:clamp(39px,5vw,62px);font-weight:800;line-height:1.08;letter-spacing:-.055em}
+body.school-site .hero h1 strong,body.school-site .hero h1 span,body.school-site .about-hero h1 span{color:var(--blue)!important}
+body.school-site .hero-content>p,body.school-site .hero-content .lead{max-width:560px;color:var(--muted)!important;font-size:16px;line-height:1.85}
+body.school-site .hero-buttons,body.school-site .hero-links{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:26px}
+body.school-site .button,body.school-site .text-button,body.school-site .cta-button,body.school-site .simple-button,body.school-site .btn.primary{
+ display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:12px 17px;border-radius:9px;
+ font-size:13px;font-weight:750;transition:transform .18s,background .18s
 }
-.hero-grid,.about-hero-content{
-  width:min(1180px,calc(100% - 48px));margin-inline:auto;
-  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);
-  align-items:center;gap:clamp(35px,6vw,90px);padding:clamp(68px,9vw,116px) 0
+body.school-site .button-primary,body.school-site .cta-button,body.school-site .simple-button,body.school-site .btn.primary{background:var(--navy)!important;color:#fff!important;border:1px solid var(--navy)}
+body.school-site .button-primary:hover,body.school-site .cta-button:hover,body.school-site .simple-button:hover,body.school-site .btn.primary:hover{background:var(--blue)!important;transform:translateY(-1px)}
+body.school-site .button-outline{background:#fff!important;color:var(--navy)!important;border:1px solid #cbd8e5}
+body.school-site .button-outline:hover{background:var(--pale)!important}
+body.school-site .hero-trust{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:26px}
+body.school-site .trust-item{color:#52657a;font-size:12px}
+body.school-site .trust-item:before{content:"✓";color:#2c7a61;font-weight:800;margin-right:7px}
+body.school-site .hero-note{display:flex;align-items:center;gap:10px;margin-top:20px;color:var(--muted);font-size:12px}
+body.school-site .note-line{width:28px;height:2px;background:var(--gold)}
+body.school-site .hero-image{position:relative;min-width:0}
+body.school-site .hero-image img,body.school-site .about-image img,body.school-site .learning-image img,body.school-site .about-hero-image img{
+ width:100%;object-fit:cover;border-radius:18px;box-shadow:var(--shadow)
 }
-.hero-content,.about-hero-text{max-width:700px}
-.hero-label,.small-title,.eyebrow{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:.72rem!important;font-weight:800!important;letter-spacing:.13em!important;
-  color:var(--ui-blue)!important;text-transform:uppercase
+body.school-site .hero-image img{height:440px}
+body.school-site .hero-image-card{position:absolute;left:-22px;bottom:22px;max-width:235px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:var(--shadow);color:var(--navy);font-size:13px;font-weight:750}
+body.school-site .services,body.school-site .about-home,body.school-site .learning{padding:76px 0;background:#fff!important;color:var(--ink)}
+body.school-site .section-top{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:28px}
+body.school-site .section-top h2,body.school-site .about-text h2,body.school-site .learning-text h2,body.school-site .section-heading h2{
+ margin:9px 0 0;color:var(--navy)!important;font-size:clamp(28px,3.4vw,40px);font-weight:800;letter-spacing:-.045em
 }
-.hero-label span{width:8px;height:8px;border-radius:50%;background:#21a67a;box-shadow:0 0 0 4px rgba(33,166,122,.12)}
-.hero h1,.about-hero h1{
-  margin:22px 0 20px!important;color:var(--ui-ink)!important;
-  font-size:clamp(2.8rem,5.4vw,5.15rem)!important;line-height:1.04!important;
-  font-weight:800!important;letter-spacing:-.065em!important;max-width:780px
-}
-.hero h1 strong,.about-hero h1 span{
-  display:block;color:var(--ui-blue)!important;font-weight:800!important
-}
-.hero p,.about-hero p{color:var(--ui-muted);font-size:1rem;line-height:1.9;max-width:590px}
-.hero-content>p{margin-bottom:28px}
-.hero-content a,.about-hero a{border-radius:11px}
-.hero-visual,.hero-image,.hero-card,.about-hero-image,.about-hero-visual{
-  border:1px solid rgba(18,58,90,.1);border-radius:24px;box-shadow:var(--ui-shadow)
-}
-section:not(.hero):not(.about-hero){scroll-margin-top:92px}
-body.school-site main>section:not(.hero):not(.about-hero){padding-block:clamp(48px,7vw,82px)}
-body.school-site h2,body.school-site h3{color:var(--ui-ink);letter-spacing:-.035em}
-body.school-site p{line-height:1.8}
-body.school-site section h2{font-weight:800}
-body.school-site section .container{width:min(1180px,calc(100% - 48px))}
-.learning,.features,.programs,.values,.school-values,.stats-section,.about-content,.about-details{
-  background:var(--ui-paper)
-}
-.feature-card,.learning-card,.program-card,.value-card,.facility-card,.stat-card,.info-card,.about-card{
-  background:var(--ui-paper)!important;border:1px solid var(--ui-line)!important;
-  border-radius:var(--ui-radius)!important;box-shadow:0 4px 15px rgba(23,36,58,.035)!important;
-  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease
-}
-.feature-card:hover,.learning-card:hover,.program-card:hover,.value-card:hover,.facility-card:hover,.info-card:hover,.about-card:hover{
-  transform:translateY(-3px);border-color:#c6d8eb!important;box-shadow:var(--ui-shadow)!important
-}
-body.school-site img{max-width:100%;height:auto}
-body.school-site footer,body.school-site .footer{
-  background:var(--ui-navy-deep)!important;color:#e5edf6!important;border-top:1px solid rgba(255,255,255,.1)
-}
-body.school-site footer a,body.school-site .footer a{color:#e5edf6}
-body.school-site footer a:hover,body.school-site .footer a:hover{color:#f2ca83}
+body.school-site .section-top>p{max-width:430px;color:var(--muted)!important;font-size:14px;line-height:1.8}
+body.school-site .service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+body.school-site .service-card{display:flex;gap:14px;min-height:190px;padding:24px 21px;background:#fff!important;border:1px solid var(--line)!important;border-radius:14px;box-shadow:0 6px 20px rgba(20,48,76,.035);color:var(--ink)}
+body.school-site .service-card.featured{background:#f5f8fc!important;border-color:#cfdeeb!important}
+body.school-site .service-number{display:grid;place-items:center;flex-shrink:0;width:36px;height:36px;border-radius:9px;background:#e8f0f7;color:var(--navy);font-size:11px;font-weight:800}
+body.school-site .service-content h3{margin:2px 0 10px;color:var(--navy)!important;font-size:17px}
+body.school-site .service-content p{margin:0;color:var(--muted)!important;font-size:13px;line-height:1.8}
+body.school-site .service-link{display:inline-block;margin-top:14px;color:var(--blue)!important;font-size:12px;font-weight:800}
+body.school-site .about-home .about-grid,body.school-site .learning .learning-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(30px,6vw,78px)}
+body.school-site .about-image,body.school-site .learning-image{position:relative;min-width:0}
+body.school-site .about-image img,body.school-site .learning-image img{height:390px}
+body.school-site .image-tag{position:absolute;left:16px;bottom:16px;max-width:230px;padding:13px 16px;border-radius:10px;background:#fff;color:var(--navy);font-size:12px;font-weight:800;box-shadow:var(--shadow)}
+body.school-site .about-text p,body.school-site .learning-text p{color:var(--muted)!important;font-size:14px;line-height:1.9}
+body.school-site .text-button{margin-top:12px;color:var(--navy)!important;background:#edf3f8;border:1px solid #dbe5ee}
+body.school-site .stats{padding:38px 0;background:var(--navy)!important;color:#fff!important}
+body.school-site .stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+body.school-site .stat{padding:16px 12px;text-align:center;border-right:1px solid rgba(255,255,255,.18)}
+body.school-site .stat:last-child{border-right:0}
+body.school-site .stat strong,body.school-site .stat h3{display:block;margin:0;color:#fff!important;font-family:Manrope,sans-serif;font-size:28px;font-weight:800}
+body.school-site .stat p{margin:5px 0 0;color:#d7e3ef!important;font-size:12px}
+body.school-site .learning-list{display:grid;gap:12px;margin-top:20px}
+body.school-site .learning-list>div{padding:12px 14px;border-left:3px solid var(--gold);background:#f6f8fb;border-radius:0 8px 8px 0;color:#43576b;font-size:13px}
+body.school-site .home-cta{padding:62px 0;background:#f4f7fb!important}
+body.school-site .cta-content{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:34px 38px;border:1px solid #dfe7ef;border-radius:17px;background:linear-gradient(115deg,#edf4fa,#fff 78%,#fff8ed)}
+body.school-site .cta-content>div>span{color:var(--blue);font-size:10px;font-weight:800;letter-spacing:.14em}
+body.school-site .cta-content h2{margin:10px 0;color:var(--navy)!important;font-size:clamp(26px,3vw,36px)}
+body.school-site .cta-content h2 strong{color:var(--blue)!important}
+body.school-site .cta-content p{max-width:580px;color:var(--muted)!important;font-size:13px}
+body.school-site .footer{padding:42px 0 0;background:var(--navy-dark)!important;color:#e1eaf2!important}
+body.school-site .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:34px;padding-bottom:32px}
+body.school-site .footer-brand p,body.school-site .footer p{color:#c2d0de!important;font-size:12px}
+body.school-site .footer .logo-text strong{color:#fff!important}
+body.school-site .footer .logo-text span{color:#c2d0de!important}
+body.school-site .footer-menu{display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+body.school-site .footer-menu strong{margin-bottom:5px;color:#fff;font-size:13px}
+body.school-site .footer-menu a,body.school-site .footer-links a{color:#d5e0ea!important;font-size:12px}
+body.school-site .footer-menu a:hover,body.school-site .footer-links a:hover{color:#f0d09a!important}
+body.school-site .copyright{padding:16px 22px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#c2d0de!important;font-size:11px}
 
-/* Results portal: clear, calm, form-first experience */
-body.results-page{padding:0!important;min-height:100vh;background:linear-gradient(180deg,#f0f5fb 0,#f7f9fc 310px,#f7f9fc 100%)!important}
-.portal-nav{padding-inline:clamp(18px,4vw,56px)}
-body.results-page .container{width:min(900px,calc(100% - 36px));padding:0;margin:0 auto}
-body.results-page .header{
-  margin:44px auto 26px!important;padding:0 0 8px!important;text-align:center;
-  background:transparent!important;border:0!important;box-shadow:none!important
-}
-.portal-kicker{color:var(--ui-blue)!important;font-size:.72rem!important;font-weight:800!important;letter-spacing:.14em!important}
-.portal-kicker span{color:var(--ui-gold)}
-body.results-page .header h1{
-  max-width:760px;margin:12px auto 13px!important;color:var(--ui-ink)!important;
-  font-size:clamp(2.1rem,4.6vw,3.55rem)!important;line-height:1.1!important;
-  font-weight:800!important;letter-spacing:-.055em!important
-}
-body.results-page .header h2{
-  max-width:650px;margin:0 auto!important;color:var(--ui-muted)!important;
-  font-size:.96rem!important;font-weight:500!important;line-height:1.8!important
-}
-.search-box{
-  max-width:780px;margin:0 auto 48px!important;padding:clamp(22px,4vw,36px)!important;
-  background:var(--ui-paper)!important;border:1px solid var(--ui-line)!important;
-  border-radius:22px!important;box-shadow:0 18px 55px rgba(23,36,58,.08)!important
-}
-.input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px!important}
-.input-group{display:flex;flex-direction:column;gap:8px!important}
-.input-group label,.search-box label{color:#34445c!important;font-size:.82rem!important;font-weight:800!important}
-.input-group input,.input-group select,.search-box input,.search-box select,.search-box textarea{
-  width:100%;min-height:49px;padding:12px 14px!important;
-  border:1px solid #d7e0eb!important;border-radius:11px!important;
-  background:#fbfcfe!important;color:var(--ui-ink)!important;
-  font-size:16px!important;box-shadow:none!important;transition:border-color .18s,box-shadow .18s
-}
-.input-group input:focus,.input-group select:focus,.search-box input:focus,.search-box select:focus,.search-box textarea:focus{
-  outline:none!important;border-color:#6e9bc9!important;box-shadow:0 0 0 4px rgba(40,100,168,.1)!important
-}
-.search-box button,.search-box input[type=submit],.search-box .button,.result-button{
-  min-height:47px;border-radius:11px!important;font-weight:800!important
-}
-#resultContainer,.result-container,.result-card,.result-box,.result-details{
-  background:var(--ui-paper);border:1px solid var(--ui-line);border-radius:17px;box-shadow:var(--ui-shadow)
-}
-body.results-page .footer,body.results-page footer{color:var(--ui-muted);text-align:center;padding:26px 18px;font-size:.8rem}
-
-/* Profile page: align with school brand instead of a separate dark identity */
-body:not(.school-site):not(.results-page){
-  --ink:var(--ui-ink);--muted:var(--ui-muted);--subtle:#7a899b;--night:var(--ui-bg);
-  --panel:var(--ui-paper);--panel-light:#f1f5f9;--line:var(--ui-line);
-  --mint:var(--ui-blue);--gold:var(--ui-gold);
-  color:var(--ui-ink)!important;background:var(--ui-bg)!important
-}
-body:not(.school-site):not(.results-page) .topbar{
-  width:100%;margin:0;padding-inline:clamp(18px,4vw,56px);border-radius:0
-}
-body:not(.school-site):not(.results-page) .hero{
-  background:linear-gradient(115deg,#eff5fb,#fff 65%,#fff8ed)!important;
-  border-bottom:1px solid var(--ui-line)
-}
-body:not(.school-site):not(.results-page) .hero h1,
-body:not(.school-site):not(.results-page) h1,
-body:not(.school-site):not(.results-page) h2,
-body:not(.school-site):not(.results-page) h3{color:var(--ui-ink)!important}
-body:not(.school-site):not(.results-page) em{color:var(--ui-blue)!important}
-body:not(.school-site):not(.results-page) .hero p,
-body:not(.school-site):not(.results-page) p{color:var(--ui-muted)}
-body:not(.school-site):not(.results-page) .identity-card,
-body:not(.school-site):not(.results-page) .card,
-body:not(.school-site):not(.results-page) .skill-card,
-body:not(.school-site):not(.results-page) .achievement-card,
-body:not(.school-site):not(.results-page) .project-card{
-  background:var(--ui-paper)!important;border:1px solid var(--ui-line)!important;
-  border-radius:18px!important;box-shadow:var(--ui-shadow)!important
-}
-body:not(.school-site):not(.results-page) .monogram{background:var(--ui-navy)!important;color:white!important;border-radius:18px}
-body:not(.school-site):not(.results-page) .button-gold{
-  background:var(--ui-navy)!important;color:white!important;border-color:var(--ui-navy)!important;border-radius:11px
-}
-body:not(.school-site):not(.results-page) .top-action{background:var(--ui-navy)!important;color:white!important}
-
-/* Responsive navigation and layouts */
-@media(max-width:980px){
-  .header,.portal-nav,.topbar{gap:12px;padding-inline:20px}
-  .header .container.navbar{gap:14px}
-  .nav,.menu,.portal-nav nav,.topbar nav{gap:2px}
-  .nav a,.menu a,.portal-nav nav a,.topbar nav a{padding:8px 9px;font-size:.78rem}
-  .hero-grid,.about-hero-content{gap:34px}
-}
-@media(max-width:760px){
-  .header,.portal-nav,.topbar{position:relative;min-height:auto;flex-wrap:wrap;justify-content:space-between;padding:14px 18px}
-  .header .container.navbar{flex-wrap:wrap}
-  .nav,.menu,.portal-nav nav,.topbar nav{order:3;width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding:5px 0 1px}
-  .nav a,.menu a,.portal-nav nav a,.topbar nav a{flex:none}
-  .header-button,.result-btn,.portal-action,.top-action{min-height:40px;padding-inline:12px;font-size:.76rem}
-  .hero-grid,.about-hero-content{width:calc(100% - 36px);grid-template-columns:1fr;padding:58px 0;gap:30px}
-  .hero h1,.about-hero h1{font-size:clamp(2.5rem,10vw,4rem)!important}
-  .hero-visual,.hero-image,.hero-card,.about-hero-image,.about-hero-visual{max-width:560px;width:100%;margin-inline:auto}
-  body.school-site main>section:not(.hero):not(.about-hero){padding-block:48px}
-  body.school-site section .container{width:calc(100% - 36px)}
-  body.results-page .header{margin-top:34px!important}
-  .search-box{margin-bottom:32px!important;padding:20px!important}
-  body:not(.school-site):not(.results-page) .topbar{position:relative}
-}
-@media(max-width:520px){
-  .container,.page-width{width:calc(100% - 32px)}
-  .logo-mark,.portal-mark,.brand-mark{width:39px;height:39px;border-radius:11px}
-  .logo-text strong,.portal-brand strong,.brand strong{font-size:.82rem}
-  .logo-text span,.portal-brand small,.brand small{font-size:.68rem}
-  .header-button,.result-btn,.portal-action,.top-action{font-size:.72rem}
-  .hero-grid,.about-hero-content{padding:48px 0}
-  .hero h1,.about-hero h1{font-size:clamp(2.3rem,11vw,3.2rem)!important}
-  .input-grid{grid-template-columns:1fr!important;gap:13px!important}
-  body.results-page .container{width:calc(100% - 28px)}
-  body.results-page .header h1{font-size:2.25rem!important}
-  .search-box{padding:17px!important;border-radius:17px!important}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
-
-
-/* === Layout correction and refined home-page composition === */
-/* Keep page header as a full-width wrapper; layout belongs to its inner navbar. */
-body.school-site .header{
-  display:block!important;position:sticky!important;top:0!important;
-  min-height:0!important;padding:0!important;margin:0!important;
-  background:rgba(255,255,255,.94)!important;
-  border-bottom:1px solid var(--ui-line)!important;
-  box-shadow:0 4px 18px rgba(23,36,58,.035)!important;
-}
-body.school-site .header .container.navbar{
-  width:min(1320px,calc(100% - 48px))!important;
-  min-height:78px!important;margin:0 auto!important;padding:0!important;
-  display:flex!important;align-items:center!important;justify-content:space-between!important;
-  gap:24px!important;flex-wrap:nowrap!important;
-}
-body.school-site .header .nav{display:flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;flex-wrap:wrap!important;order:initial!important;width:auto!important;overflow:visible!important}
-body.school-site .header .nav a{flex:none!important}
-body.school-site .header .logo{display:flex!important;align-items:center!important}
-body.school-site .header .header-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:none!important}
-body.school-site main{overflow:clip}
-body.school-site .hero{
-  padding:0!important;min-height:620px;
-  background:linear-gradient(120deg,#f5f8fc 0%,#fff 58%,#fdf7ed 100%)!important;
-  border-bottom:1px solid #e5ebf2!important;
-}
-body.school-site .hero:before{
-  inset:auto -110px -210px auto!important;width:480px;height:480px;
-  background:none!important;border:1px solid rgba(40,100,168,.10);
-  box-shadow:0 0 0 35px rgba(40,100,168,.025),0 0 0 75px rgba(40,100,168,.018);
-}
-body.school-site .hero:after{display:none!important}
-body.school-site .hero .hero-grid{
-  width:min(1180px,calc(100% - 48px))!important;min-height:620px;
-  margin:0 auto!important;padding:72px 0!important;
-  display:grid!important;grid-template-columns:minmax(0,1.02fr) minmax(320px,.88fr)!important;
-  align-items:center!important;gap:clamp(38px,5vw,72px)!important;
-}
-body.school-site .hero-content{position:relative;z-index:1;max-width:650px}
-body.school-site .hero-label{margin-bottom:20px!important;color:#2864a8!important;letter-spacing:.14em!important;font-size:.7rem!important}
-body.school-site .hero-label span{width:8px!important;height:8px!important;border-radius:50%;margin-right:3px!important;background:#1aa779!important;box-shadow:0 0 0 4px rgba(26,167,121,.12)!important}
-body.school-site .hero h1{
-  margin:0 0 22px!important;max-width:660px!important;
-  font-size:clamp(3rem,5.3vw,4.65rem)!important;line-height:1.045!important;
-  letter-spacing:-.065em!important;color:#17243a!important;
-}
-body.school-site .hero h1 strong{display:block;margin-top:5px;color:#2864a8!important}
-body.school-site .hero-content>p{max-width:550px;margin:0 0 27px!important;color:#5c6c80!important;font-size:1rem!important;line-height:1.85!important}
-body.school-site .hero-buttons{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:10px!important}
-body.school-site .hero-buttons .button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 18px;border-radius:11px!important;font-size:.81rem!important}
-body.school-site .hero-buttons .button-primary{background:#123a5a!important;border:1px solid #123a5a!important;color:white!important;box-shadow:0 8px 18px rgba(18,58,90,.16)!important}
-body.school-site .hero-buttons .button-primary:hover{background:#2864a8!important}
-body.school-site .hero-buttons .button-outline{background:#fff!important;border:1px solid #dce4ed!important;color:#233b54!important}
-body.school-site .hero-buttons .button-outline:hover{background:#f3f7fb!important;border-color:#b8cde1!important}
-body.school-site .hero-trust{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin-top:25px!important}
-body.school-site .trust-item{min-width:0!important;padding:13px 13px!important;border:1px solid #e2e8f0!important;border-radius:12px!important;background:rgba(255,255,255,.82)!important;box-shadow:none!important}
-body.school-site .trust-item strong{display:block;margin-bottom:3px;color:#123a5a!important;font-size:.88rem!important}
-body.school-site .trust-item span{display:block;color:#64748b!important;font-size:.67rem!important;line-height:1.5!important}
-body.school-site .hero-note{margin-top:19px!important}
-body.school-site .hero-note p{font-size:.73rem!important;color:#77869a!important}
-body.school-site .hero-image{position:relative!important;min-width:0!important;margin:0!important;padding:0!important;border-radius:24px!important;overflow:visible!important;background:transparent!important;box-shadow:none!important}
-body.school-site .hero-image img{
-  display:block;width:100%!important;height:490px!important;max-height:490px!important;
-  object-fit:cover!important;object-position:center!important;border-radius:24px!important;
-  box-shadow:0 25px 55px rgba(23,36,58,.16)!important;border:1px solid rgba(18,58,90,.09)
-}
-body.school-site .hero-image-card{
-  left:-28px!important;bottom:24px!important;max-width:calc(100% - 10px);
-  padding:17px 20px!important;border:1px solid #e3eaf2!important;border-radius:14px!important;
-  background:rgba(255,255,255,.96)!important;box-shadow:0 15px 36px rgba(23,36,58,.12)!important
-}
-body.school-site .hero-image-card strong{color:#17243a!important;font-size:.84rem!important}
-body.school-site .hero-image-card span{color:#64748b!important;font-size:.72rem!important}
-body.school-site .services{padding:78px 0!important;background:#fff!important}
-body.school-site .section-top{align-items:end!important;gap:30px!important;margin-bottom:30px!important}
-body.school-site .section-top h2{font-size:clamp(1.9rem,3vw,2.55rem)!important;letter-spacing:-.05em!important;color:#17243a!important}
-body.school-site .section-top h2 span{color:#2864a8!important}
-body.school-site .section-top>p{max-width:370px;color:#64748b!important;font-size:.88rem!important}
-body.school-site .service-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important}
-body.school-site .service-card{
-  min-height:235px!important;padding:25px!important;border:1px solid #e2e8f0!important;
-  border-radius:17px!important;background:#fff!important;box-shadow:0 5px 18px rgba(23,36,58,.035)!important
-}
-body.school-site .service-card:hover{transform:translateY(-4px)!important;border-color:#c7d9eb!important;box-shadow:0 14px 30px rgba(23,36,58,.08)!important}
-body.school-site .service-card.featured{background:linear-gradient(145deg,#123a5a,#1d527a)!important;border-color:transparent!important}
-body.school-site .service-number{color:#d7a85b!important;font-size:.72rem!important}
-body.school-site .service-content h3{font-size:1.15rem!important;color:#17243a!important}
-body.school-site .service-card.featured .service-content h3{color:#fff!important}
-body.school-site .service-content p{color:#64748b!important;font-size:.81rem!important;line-height:1.75!important}
-body.school-site .service-card.featured .service-content p{color:#e1eaf2!important}
-body.school-site .service-link{color:#2864a8!important;font-size:.75rem!important}
-body.school-site .service-card.featured .service-link{color:#f0cd91!important}
-body.school-site .about-home,body.school-site .learning{background:#f5f7fb!important}
-body.school-site .about-grid,body.school-site .learning-grid{gap:clamp(35px,6vw,75px)!important}
-body.school-site .about-image img,body.school-site .learning-image img{width:100%!important;object-fit:cover!important;border-radius:22px!important;box-shadow:0 18px 42px rgba(23,36,58,.12)!important}
-body.school-site .about-image img{height:430px!important}
-body.school-site .about-text h2,body.school-site .learning-text h2{color:#17243a!important;font-size:clamp(2rem,3.5vw,2.8rem)!important;letter-spacing:-.055em!important}
-body.school-site .about-text h2 span,body.school-site .learning-text h2 span{color:#2864a8!important}
-body.school-site .about-text p,body.school-site .learning-text>p{color:#64748b!important;font-size:.9rem!important;line-height:1.85!important}
-body.school-site .text-button{color:#123a5a!important;font-size:.83rem!important}
-body.school-site .stats{padding:54px 0!important;background:#123a5a!important}
-body.school-site .stats-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:13px!important}
-body.school-site .stat{padding:20px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:15px!important;background:rgba(255,255,255,.055)!important}
-body.school-site .stat strong{color:#e8bf7b!important}
-body.school-site .stat h3{color:#fff!important;font-size:1rem!important}
-body.school-site .stat p{color:#d3deea!important;line-height:1.7!important}
-body.school-site .learning-list>div{background:#fff!important;border:1px solid #e2e8f0!important;border-radius:13px!important}
-body.school-site .learning-list strong{color:#17243a!important}
-body.school-site .learning-list p{color:#64748b!important}
-body.school-site .home-cta{padding:58px 0!important;background:#fff!important}
-body.school-site .cta-content{padding:clamp(26px,4vw,44px)!important;border:1px solid #dce6f0!important;border-radius:22px!important;background:linear-gradient(115deg,#f0f5fb,#fff 70%,#fff8ed)!important}
-body.school-site .cta-content>div>span{color:#2864a8!important;font-size:.7rem!important;font-weight:800!important;letter-spacing:.12em!important}
-body.school-site .cta-content h2{color:#17243a!important;font-size:clamp(2rem,4vw,3rem)!important;letter-spacing:-.055em!important}
-body.school-site .cta-content h2 strong{color:#2864a8!important}
-body.school-site .cta-content p{color:#64748b!important}
-body.school-site .cta-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:14px 19px!important;border-radius:11px!important;background:#123a5a!important;color:#fff!important}
-body.school-site .footer{background:#0d2b45!important}
-body.school-site .footer-brand .logo-text strong{color:#fff!important}
-body.school-site .footer-brand .logo-text span{color:#b5c5d5!important}
-body.school-site .footer-menu a{color:#c4d1df!important}
-body.school-site .copyright{color:#a8b8c9!important}
-@media(max-width:980px){
- body.school-site .header .container.navbar{width:calc(100% - 32px)!important;gap:12px!important}
- body.school-site .header .nav{gap:1px!important}
- body.school-site .header .nav a{padding:8px 9px!important;font-size:.75rem!important}
- body.school-site .hero .hero-grid{grid-template-columns:minmax(0,1fr) minmax(280px,.85fr)!important;gap:30px!important}
- body.school-site .hero-image img{height:420px!important}
- body.school-site .hero h1{font-size:clamp(2.6rem,5vw,3.7rem)!important}
- body.school-site .hero-trust{grid-template-columns:1fr!important}
- body.school-site .trust-item{padding:10px 12px!important}
-}
-@media(max-width:760px){
- body.school-site .header .container.navbar{min-height:0!important;flex-wrap:wrap!important;padding:13px 0!important;gap:12px!important}
- body.school-site .header .nav{order:3!important;width:100%!important;justify-content:flex-start!important;overflow-x:auto!important;flex-wrap:nowrap!important;padding:3px 0!important}
- body.school-site .header .nav a{flex:none!important}
- body.school-site .hero{min-height:0!important}
- body.school-site .hero .hero-grid{min-height:0!important;width:calc(100% - 36px)!important;grid-template-columns:1fr!important;padding:48px 0 54px!important;gap:30px!important}
- body.school-site .hero h1{font-size:clamp(2.65rem,10vw,4rem)!important}
- body.school-site .hero-image{width:100%!important;max-width:560px!important;margin:0 auto!important}
- body.school-site .hero-image img{height:clamp(280px,75vw,430px)!important}
- body.school-site .hero-image-card{left:12px!important;bottom:14px!important}
- body.school-site .hero-trust{grid-template-columns:repeat(3,minmax(0,1fr))!important}
- body.school-site .trust-item{padding:11px 9px!important}
- body.school-site .trust-item strong{font-size:.82rem!important}
- body.school-site .trust-item span{font-size:.63rem!important}
- body.school-site .section-top{display:block!important}
- body.school-site .section-top>p{margin-top:14px!important}
- body.school-site .service-grid{grid-template-columns:1fr!important}
- body.school-site .service-card{min-height:200px!important}
- body.school-site .about-grid,body.school-site .learning-grid{grid-template-columns:1fr!important;gap:30px!important}
- body.school-site .about-image img{height:clamp(260px,70vw,400px)!important}
- body.school-site .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- body.school-site .cta-content{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
-}
-@media(max-width:480px){
- body.school-site .header .container.navbar{width:calc(100% - 28px)!important}
- body.school-site .header .header-button{min-height:39px!important;padding:0 11px!important;font-size:.73rem!important}
- body.school-site .logo-mark{width:39px!important;height:39px!important}
- body.school-site .logo-text strong{font-size:.82rem!important}
- body.school-site .logo-text span{font-size:.67rem!important}
- body.school-site .hero .hero-grid{width:calc(100% - 30px)!important}
- body.school-site .hero-buttons .button{min-height:45px!important;padding:0 13px!important;font-size:.74rem!important}
- body.school-site .hero-trust{gap:7px!important}
- body.school-site .trust-item{padding:10px 7px!important}
- body.school-site .trust-item span{font-size:.59rem!important}
- body.school-site .stats-grid{gap:9px!important}
- body.school-site .stat{padding:15px!important}
-}
-
-
-/* =========================================================
-   COMPLETE SCHOOL WEBSITE SYSTEM — About, Results & Profile
-   Shared palette: clean white, academic navy, restrained gold.
-   Presentation-only; form IDs, result logic and print flow untouched.
-========================================================= */
-:root{
- --school-ink:#172b40;--school-navy:#123a5a;--school-blue:#2d6797;
- --school-gold:#c99a4a;--school-muted:#64748b;--school-border:#dfe7ef;
- --school-bg:#f4f7fb;--school-white:#fff;--school-radius:18px;
- --school-shadow:0 18px 50px rgba(18,58,90,.09);
-}
-body.school-site,body.results-page,body:not(.school-site):not(.results-page){
- color:var(--school-ink);background:var(--school-bg);
-}
-body.school-site .header,body.school-site .topbar,body.results-page .portal-nav{
- background:rgba(255,255,255,.97)!important;border-bottom:1px solid var(--school-border)!important;
- box-shadow:0 5px 24px rgba(18,58,90,.045)!important;
-}
-body.school-site .header .container,body.school-site .navbar,body.results-page .portal-nav{
- max-width:1240px!important;margin-inline:auto!important;
-}
-body.school-site .logo-mark,body.school-site .brand-mark,body.results-page .portal-mark{
- background:var(--school-navy)!important;color:#fff!important;border-radius:10px!important;
-}
-body.school-site .logo-text strong,body.school-site .brand strong,body.results-page .portal-brand strong{color:var(--school-navy)!important}
-body.school-site .logo-text span,body.school-site .brand small,body.results-page .portal-brand small{color:var(--school-muted)!important}
-body.school-site .header .nav a,body.school-site .menu a,body.school-site .topbar nav a,body.results-page .portal-nav nav a{
- color:#53657a!important;font-weight:650!important;transition:color .2s,background .2s!important;
-}
-body.school-site .header .nav a:hover,body.school-site .menu a:hover,body.school-site .topbar nav a:hover,body.results-page .portal-nav nav a:hover,
-body.school-site .header .nav a.active,body.school-site .menu a.active,body.school-site .topbar nav a.active,body.results-page .portal-nav nav a.active{
- color:var(--school-navy)!important;background:#edf3f8!important;border-radius:9px!important;
-}
-body.school-site .header-button,body.school-site .result-btn,body.school-site .top-action,body.results-page .portal-action{
- background:var(--school-navy)!important;color:#fff!important;border-radius:10px!important;
- box-shadow:none!important;font-weight:700!important;
-}
-body.school-site .header-button:hover,body.school-site .result-btn:hover,body.school-site .top-action:hover,body.results-page .portal-action:hover{background:var(--school-blue)!important}
-
-/* About the school */
-body.school-site .about-hero{background:linear-gradient(115deg,#f4f8fc 0%,#fff 64%,#fff8ec 100%)!important;padding:88px 0 78px!important}
-body.school-site .about-hero-content,body.school-site .about-intro-grid,body.school-site .learning-section .learning-grid{
- max-width:1160px!important;margin-inline:auto!important;gap:clamp(34px,6vw,76px)!important;
-}
-body.school-site .small-title,body.school-site .section-label{color:var(--school-blue)!important;font-weight:800!important;letter-spacing:.13em!important;font-size:.72rem!important}
-body.school-site .about-hero h1,body.school-site .about-hero-text h1{
- color:var(--school-ink)!important;font-size:clamp(2.5rem,5vw,4.35rem)!important;line-height:1.08!important;
- letter-spacing:-.055em!important;font-weight:780!important;
-}
-body.school-site .about-hero h1 span,body.school-site .about-hero-text h1 span{color:var(--school-blue)!important}
-body.school-site .about-hero p:not(.small-title),body.school-site .about-intro-grid p,body.school-site .about-introduction p{
- color:var(--school-muted)!important;line-height:1.85!important;font-size:.96rem!important;
-}
-body.school-site .about-hero-image img,body.school-site .learning-section .learning-image img{
- width:100%!important;object-fit:cover!important;border-radius:20px!important;
- box-shadow:var(--school-shadow)!important;
-}
-body.school-site .school-values,body.school-site .about-introduction{background:#fff!important;padding-block:78px!important}
-body.school-site .section-heading h2,body.school-site .about-intro-text h2,body.school-site .school-promise h2{
- color:var(--school-ink)!important;letter-spacing:-.04em!important;font-size:clamp(2rem,3.6vw,3rem)!important;
-}
-body.school-site .value-cards{gap:18px!important}
+/* About school */
+body.school-site .about-hero{padding:68px 0;background:linear-gradient(115deg,#eff5fb,#fff 65%,#fff8ed)!important}
+body.school-site .about-hero-content{display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:60px}
+body.school-site .about-hero-text h1{font-size:clamp(38px,4.8vw,58px)}
+body.school-site .about-hero-text>p:not(.small-title){color:var(--muted)!important;font-size:15px;line-height:1.9}
+body.school-site .about-hero-image img{height:370px}
+body.school-site .about-introduction,body.school-site .school-values,body.school-site .learning-section{padding:72px 0;background:#fff!important}
+body.school-site .about-intro-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:start}
+body.school-site .about-intro-text h2{margin:10px 0 0}
+body.school-site .about-intro-grid p{color:var(--muted)!important;font-size:14px;line-height:1.9}
+body.school-site .section-heading{margin-bottom:25px}
+body.school-site .value-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 body.school-site .value-card,body.school-site .it-admin-card,body.school-site .faculty-card{
- background:#fff!important;border:1px solid var(--school-border)!important;border-radius:16px!important;
- box-shadow:0 8px 26px rgba(18,58,90,.045)!important;transition:transform .2s,box-shadow .2s!important;
+ padding:23px;background:#fff!important;color:var(--ink)!important;border:1px solid var(--line)!important;border-radius:14px;box-shadow:0 7px 24px rgba(20,48,76,.045)
 }
-body.school-site .value-card:hover,body.school-site .faculty-card:hover{transform:translateY(-3px)!important;box-shadow:var(--school-shadow)!important}
-body.school-site .value-card h3,body.school-site .faculty-card h3,body.school-site .it-admin-card h3{color:var(--school-ink)!important}
-body.school-site .value-card p,body.school-site .faculty-card p,body.school-site .it-admin-card p{color:var(--school-muted)!important;line-height:1.8!important}
-body.school-site .it-admin-section{background:#f4f7fb!important;padding-block:76px!important}
-body.school-site .it-admin-avatar,body.school-site .faculty-avatar{background:#eaf1f7!important;color:var(--school-navy)!important;border:1px solid #d9e5ef!important}
-body.school-site .faculty-section{background:var(--school-navy)!important;padding-block:78px!important}
-body.school-site .faculty-section .section-label,body.school-site .faculty-section .faculty-header h2{color:#fff!important}
-body.school-site .faculty-card.featured{background:#fff!important;border-color:rgba(255,255,255,.28)!important}
-body.school-site .faculty-card .faculty-subject{color:var(--school-blue)!important}
-body.school-site .faculty-card .faculty-number{color:var(--school-gold)!important}
-body.school-site .learning-section{background:#fff!important;padding-block:78px!important}
-body.school-site .learning-text h2{color:var(--school-ink)!important;font-size:clamp(2rem,3.6vw,3rem)!important;letter-spacing:-.045em!important}
-body.school-site .learning-text p{color:var(--school-muted)!important;line-height:1.85!important}
-body.school-site .simple-button,body.school-site .cta .btn.primary{
- display:inline-flex!important;align-items:center!important;justify-content:center!important;
- background:var(--school-navy)!important;color:#fff!important;border-radius:10px!important;
- padding:13px 18px!important;text-decoration:none!important;font-weight:700!important;
-}
-body.school-site .school-promise{background:#f4f7fb!important;padding-block:74px!important;text-align:center!important}
-body.school-site .school-promise h2 span{display:block;color:var(--school-blue)!important}
-body.school-site .school-promise p:last-child{max-width:690px;margin-inline:auto;color:var(--school-muted)!important;line-height:1.85!important}
-body.school-site .cta{background:#fff!important;padding-block:66px!important}
-body.school-site .cta>.container{max-width:1000px!important;padding:38px!important;border:1px solid var(--school-border)!important;border-radius:20px!important;background:linear-gradient(115deg,#f0f5fa,#fff 75%,#fff8ed)!important}
-body.school-site .cta h2{color:var(--school-ink)!important}
-body.school-site .footer{background:#0d2b45!important}
-body.school-site .footer-content,body.school-site .footer-links{color:#d8e2ec!important}
-body.school-site .footer-links a{color:#d8e2ec!important}
-body.school-site .copyright{color:#aabaca!important}
+body.school-site .value-card h3,body.school-site .it-admin-card h3,body.school-site .faculty-card h3{color:var(--navy)!important}
+body.school-site .value-card p,body.school-site .it-admin-card p,body.school-site .faculty-card p{color:var(--muted)!important;font-size:13px;line-height:1.8}
+body.school-site .it-admin-section{padding:70px 0;background:#f4f7fb!important}
+body.school-site .it-admin-card{display:grid;grid-template-columns:auto 1fr;gap:18px;max-width:850px;margin:22px auto 0}
+body.school-site .it-admin-avatar,body.school-site .faculty-avatar{display:grid;place-items:center;width:56px;height:56px;border-radius:12px;background:#e9f1f8!important;color:var(--navy)!important;font-weight:800}
+body.school-site .it-admin-divider{height:1px;background:var(--line);margin:16px 0}
+body.school-site .it-admin-responsibilities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+body.school-site .responsibility{padding:10px;border-radius:8px;background:#f4f7fb;color:#43576b;font-size:12px}
+body.school-site .faculty-section{padding:70px 0;background:var(--navy)!important}
+body.school-site .faculty-header h2{color:#fff!important}
+body.school-site .light-label{color:#e8c991!important}
+body.school-site .faculty-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+body.school-site .faculty-card.featured,body.school-site .faculty-card.leadership-card{background:#f8fafc!important}
+body.school-site .faculty-number{color:var(--gold)!important;font-weight:800}
+body.school-site .faculty-subject{color:var(--blue)!important;font-size:12px;font-weight:750}
+body.school-site .faculty-footer{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px}
+body.school-site .learning-section .learning-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:55px}
+body.school-site .school-promise{padding:66px 0;background:#f4f7fb!important;text-align:center}
+body.school-site .school-promise h2{color:var(--navy)!important;font-size:clamp(28px,3.5vw,40px)}
+body.school-site .school-promise h2 span{display:block;color:var(--blue)!important}
+body.school-site .school-promise p:last-child{max-width:700px;margin:16px auto;color:var(--muted)!important}
+body.school-site .cta{padding:52px 0;background:#fff!important;text-align:center}
+body.school-site .cta>.container{padding:32px;border:1px solid var(--line);border-radius:16px;background:#f8fafc}
+body.school-site .cta h2{color:var(--navy)!important}
+body.school-site .cta p{color:var(--muted)!important}
 
-/* Results portal — clear, formal and print-friendly */
-body.results-page{min-height:100vh!important;background:#f3f6fa!important;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
-body.results-page .portal-nav{position:sticky!important;top:0!important;z-index:20!important;min-height:78px!important;padding:12px clamp(18px,4vw,52px)!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:24px!important}
-body.results-page .portal-brand{display:flex!important;align-items:center!important;gap:12px!important;text-decoration:none!important}
-body.results-page .portal-mark{display:grid!important;place-items:center!important;width:44px!important;height:44px!important;font-weight:800!important}
-body.results-page .portal-nav nav{display:flex!important;align-items:center!important;gap:6px!important}
-body.results-page .portal-nav nav a{padding:10px 12px!important;text-decoration:none!important;font-size:.87rem!important}
-body.results-page .portal-action{padding:11px 15px!important;text-decoration:none!important;font-size:.85rem!important}
-body.results-page>.container{max-width:1120px!important;margin:0 auto!important;padding:52px 24px 76px!important}
-body.results-page>.container>.header{text-align:center!important;max-width:760px!important;margin:0 auto 30px!important;background:transparent!important;padding:0!important}
-body.results-page .portal-kicker{color:var(--school-blue)!important;font-size:.72rem!important;font-weight:800!important;letter-spacing:.15em!important}
-body.results-page .container>.header h1{color:var(--school-ink)!important;font-size:clamp(2rem,4.5vw,3.2rem)!important;line-height:1.15!important;letter-spacing:-.05em!important;margin:12px 0!important}
-body.results-page .container>.header h2{max-width:650px!important;margin:0 auto!important;color:var(--school-muted)!important;font-size:1rem!important;font-weight:400!important;line-height:1.75!important}
-body.results-page .search-box{max-width:850px!important;margin:0 auto 30px!important;padding:28px!important;background:#fff!important;border:1px solid var(--school-border)!important;border-radius:18px!important;box-shadow:var(--school-shadow)!important}
-body.results-page .input-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:18px!important}
-body.results-page .input-group{display:flex!important;flex-direction:column!important;gap:8px!important;margin-bottom:18px!important}
-body.results-page .input-group label{color:var(--school-ink)!important;font-size:.85rem!important;font-weight:700!important}
-body.results-page .input-group input,body.results-page .input-group select{
- width:100%!important;min-height:48px!important;padding:12px 14px!important;background:#fff!important;
- color:var(--school-ink)!important;border:1px solid #cbd7e3!important;border-radius:10px!important;
- outline:none!important;box-shadow:none!important;font:inherit!important;
-}
-body.results-page .input-group input:focus,body.results-page .input-group select:focus{border-color:var(--school-blue)!important;box-shadow:0 0 0 3px rgba(45,103,151,.13)!important}
-body.results-page #searchBtn,body.results-page #printBtn{
- display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;
- min-height:48px!important;padding:12px 20px!important;background:var(--school-navy)!important;color:#fff!important;
- border:0!important;border-radius:10px!important;font-weight:750!important;cursor:pointer!important;
- transition:background .2s,transform .2s!important;
-}
-body.results-page #searchBtn:hover,body.results-page #printBtn:hover{background:var(--school-blue)!important;transform:translateY(-1px)!important}
-body.results-page .result-card{max-width:1000px!important;margin:0 auto!important;padding:20px!important;background:#fff!important;border:1px solid var(--school-border)!important;border-radius:18px!important;box-shadow:var(--school-shadow)!important}
-body.results-page .result-sheet{padding:clamp(18px,3vw,34px)!important;background:#fff!important;border:1px solid #dbe4ed!important;border-radius:10px!important;color:#172b40!important}
-body.results-page .result-header{text-align:center!important;padding-bottom:22px!important;border-bottom:2px solid var(--school-navy)!important;margin-bottom:22px!important}
-body.results-page .institution-name{color:var(--school-navy)!important;font-size:clamp(1rem,2.5vw,1.5rem)!important;font-weight:850!important;letter-spacing:.04em!important}
-body.results-page .result-title{margin-top:8px!important;color:#42566c!important;font-size:.94rem!important;font-weight:700!important}
-body.results-page .result-subtitle{color:var(--school-muted)!important}
-body.results-page .meta-table{display:grid!important;gap:10px!important;margin-bottom:24px!important}
-body.results-page .meta-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:10px!important}
-body.results-page .meta-item{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:12px!important;padding:12px 14px!important;background:#f6f8fb!important;border:1px solid #e4ebf2!important;border-radius:8px!important}
-body.results-page .meta-item span,body.results-page .summary-box span{color:var(--school-muted)!important;font-size:.8rem!important}
-body.results-page .meta-item strong{color:var(--school-ink)!important;text-align:right!important;overflow-wrap:anywhere!important}
-body.results-page .result-table-wrap{width:100%!important;overflow-x:auto!important;border:1px solid #dfe7ef!important;border-radius:9px!important}
-body.results-page .result-table{width:100%!important;border-collapse:collapse!important;min-width:540px!important}
-body.results-page .result-table th{padding:13px 12px!important;background:var(--school-navy)!important;color:#fff!important;text-align:left!important;font-size:.8rem!important}
-body.results-page .result-table td{padding:12px!important;border-bottom:1px solid #e4ebf2!important;color:var(--school-ink)!important;font-size:.88rem!important}
+/* Student results: formal paper-like portal, accessible contrast */
+body.results-page{min-height:100vh;background:#f3f6fa!important;color:var(--ink)!important;padding:0!important}
+body.results-page .portal-nav{gap:16px}
+body.results-page .portal-brand{display:flex;align-items:center;gap:11px}
+body.results-page .portal-nav>.container{width:100%}
+body.results-page>.container{max-width:1050px;width:calc(100% - 40px);padding:48px 0 70px;margin:0 auto}
+body.results-page>.container>.header{display:block;position:static;min-height:0;margin:0 auto 28px;padding:0;background:transparent!important;border:0;box-shadow:none;text-align:center}
+body.results-page .portal-kicker{margin:0 0 10px;color:var(--blue)!important;font-size:11px;font-weight:800;letter-spacing:.15em}
+body.results-page .container>.header h1{margin:0 0 12px;color:var(--navy)!important;font-size:clamp(30px,4.2vw,46px);font-weight:800;line-height:1.15;letter-spacing:-.05em}
+body.results-page .container>.header h2{max-width:660px;margin:0 auto;color:var(--muted)!important;font-size:15px;font-weight:400;line-height:1.8}
+body.results-page .search-box{max-width:850px;margin:0 auto 28px;padding:26px;background:#fff!important;border:1px solid var(--line)!important;border-radius:15px;box-shadow:var(--shadow)}
+body.results-page .input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+body.results-page .input-group{display:flex;flex-direction:column;gap:7px;margin-bottom:15px;min-width:0}
+body.results-page .input-group label{color:#33485c!important;font-size:13px;font-weight:750}
+body.results-page .input-group input,body.results-page .input-group select{width:100%;min-height:47px;padding:11px 13px;border:1px solid #cbd7e3!important;border-radius:8px;background:#fbfcfe!important;color:var(--ink)!important;box-shadow:none;outline:none}
+body.results-page .input-group input:focus,body.results-page .input-group select:focus{border-color:var(--blue)!important;box-shadow:0 0 0 3px rgba(53,111,158,.13)}
+body.results-page .math-verification{grid-column:1/-1}
+body.results-page #searchBtn,body.results-page #printBtn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:12px 18px;border:1px solid var(--navy)!important;border-radius:9px;background:var(--navy)!important;color:#fff!important;font-size:13px;font-weight:750}
+body.results-page #searchBtn:hover,body.results-page #printBtn:hover{background:var(--blue)!important}
+body.results-page .result-card{margin:0 auto;padding:20px;background:#fff!important;border:1px solid var(--line)!important;border-radius:15px;box-shadow:var(--shadow);color:var(--ink)!important}
+body.results-page .result-sheet{padding:clamp(16px,3vw,32px);background:#fff!important;color:var(--ink)!important;border:1px solid #e0e7ef;border-radius:9px}
+body.results-page .result-header{text-align:center;padding-bottom:19px;margin-bottom:20px;border-bottom:2px solid var(--navy)}
+body.results-page .institution-name{color:var(--navy)!important;font-family:Manrope,sans-serif;font-size:clamp(17px,2.4vw,25px);font-weight:800;letter-spacing:.01em}
+body.results-page .result-title{margin-top:8px;color:#40556a!important;font-size:14px;font-weight:750}
+body.results-page .result-subtitle{color:var(--muted)!important;font-size:12px}
+body.results-page .meta-table{display:grid;gap:9px;margin-bottom:20px}
+body.results-page .meta-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+body.results-page .meta-item{display:flex;justify-content:space-between;align-items:center;gap:12px;min-width:0;padding:11px 13px;background:#f5f8fb!important;border:1px solid #e2e9f0;border-radius:7px}
+body.results-page .meta-item span{color:var(--muted)!important;font-size:12px}
+body.results-page .meta-item strong{color:var(--navy)!important;font-size:13px;text-align:right;overflow-wrap:anywhere}
+body.results-page .result-table-wrap{width:100%;overflow-x:auto;border:1px solid #dfe7ef;border-radius:8px}
+body.results-page .result-table{width:100%;min-width:520px;border-collapse:collapse;background:#fff!important;color:var(--ink)!important}
+body.results-page .result-table th{padding:12px 11px;background:var(--navy)!important;color:#fff!important;text-align:left;font-size:12px;font-weight:750}
+body.results-page .result-table td{padding:11px;border-bottom:1px solid #e5ebf1;color:#27394b!important;font-size:13px}
 body.results-page .result-table tbody tr:nth-child(even){background:#f7f9fc!important}
-body.results-page .result-summary{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important;margin:20px 0!important}
-body.results-page .summary-box{display:flex!important;flex-direction:column!important;gap:7px!important;padding:15px!important;background:#f5f8fb!important;border:1px solid #e0e8f0!important;border-radius:10px!important}
-body.results-page .summary-box strong{color:var(--school-navy)!important;font-size:1.12rem!important;overflow-wrap:anywhere!important}
-body.results-page .signature-row{display:grid!important;grid-template-columns:1fr 1fr!important;gap:30px!important;padding-top:24px!important}
-body.results-page .signature-box{min-height:56px!important;display:flex!important;align-items:flex-end!important;justify-content:center!important;border-bottom:1px solid #aab8c7!important;padding-bottom:8px!important;color:var(--school-muted)!important;font-size:.78rem!important}
-body.results-page #printBtn{margin-top:18px!important}
-body.results-page .site-footer{margin-top:30px!important;padding:28px 20px!important;text-align:center!important;background:#0d2b45!important;color:#d4dfeb!important}
-body.results-page .site-footer p{margin:5px!important;font-size:.82rem!important}
-body.results-page .footer-about-link{display:inline-block!important;margin-top:10px!important;color:#f0cd91!important;text-decoration:none!important;font-weight:700!important}
+body.results-page .result-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+body.results-page .summary-box{display:flex;flex-direction:column;gap:6px;min-width:0;padding:13px;background:#f5f8fb!important;border:1px solid #e1e8f0;border-radius:8px}
+body.results-page .summary-box span{color:var(--muted)!important;font-size:11px}
+body.results-page .summary-box strong{color:var(--navy)!important;font-size:17px;overflow-wrap:anywhere}
+body.results-page .signature-row{display:grid;grid-template-columns:1fr 1fr;gap:35px;padding-top:20px}
+body.results-page .signature-box{display:flex;align-items:flex-end;justify-content:center;min-height:52px;padding-bottom:7px;border-bottom:1px solid #aebac7;color:var(--muted)!important;font-size:11px}
+body.results-page #printBtn{margin-top:17px}
+body.results-page .site-footer{padding:28px 20px;background:var(--navy-dark)!important;color:#d7e1eb!important;text-align:center}
+body.results-page .site-footer p{margin:5px;color:#d7e1eb!important;font-size:11px}
+body.results-page .footer-about-link{display:inline-block;margin-top:8px;color:#f0d09a!important;font-size:12px;font-weight:750}
 
-/* Developer profile: maintain the distinct portfolio, share the academic palette */
-body:not(.school-site):not(.results-page) .topbar{
- background:#fff!important;border-bottom:1px solid var(--school-border)!important;
- box-shadow:0 5px 24px rgba(18,58,90,.045)!important;
-}
-body:not(.school-site):not(.results-page) .brand-mark,body:not(.school-site):not(.results-page) .monogram{
- background:var(--school-navy)!important;color:#fff!important;
-}
-body:not(.school-site):not(.results-page) .topbar nav a{color:#53657a!important}
-body:not(.school-site):not(.results-page) .topbar nav a:hover,body:not(.school-site):not(.results-page) .topbar nav a.active{color:var(--school-navy)!important;background:#edf3f8!important;border-radius:8px!important}
-body:not(.school-site):not(.results-page) .top-action,body:not(.school-site):not(.results-page) .button-gold{
- background:var(--school-navy)!important;color:#fff!important;border-radius:10px!important;
-}
-body:not(.school-site):not(.results-page) .hero,body:not(.school-site):not(.results-page) .closing{
- background:linear-gradient(115deg,#f1f6fb,#fff 75%,#fff8ed)!important;
-}
-body:not(.school-site):not(.results-page) .hero h1,body:not(.school-site):not(.results-page) .closing h2{color:var(--school-ink)!important;letter-spacing:-.05em!important}
-body:not(.school-site):not(.results-page) .hero h1 em,body:not(.school-site):not(.results-page) .closing h2 em{color:var(--school-blue)!important}
+/* Developer profile: light portfolio with the same understated school brand */
+body:not(.school-site):not(.results-page) .hero,body:not(.school-site):not(.results-page) .closing{background:linear-gradient(115deg,#eff5fb 0%,#fff 68%,#fff8ed 100%)!important;color:var(--ink)!important}
+body:not(.school-site):not(.results-page) .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:55px}
+body:not(.school-site):not(.results-page) .hero h1,body:not(.school-site):not(.results-page) .closing h2{color:var(--navy)!important;font-size:clamp(36px,4.7vw,58px);line-height:1.12;letter-spacing:-.05em}
+body:not(.school-site):not(.results-page) .hero h1 em,body:not(.school-site):not(.results-page) .closing h2 em{color:var(--blue)!important}
+body:not(.school-site):not(.results-page) .eyebrow{color:var(--blue)!important;font-size:11px;font-weight:800;letter-spacing:.14em}
+body:not(.school-site):not(.results-page) .lead,body:not(.school-site):not(.results-page) .intro p,body:not(.school-site):not(.results-page) .services-section p,body:not(.school-site):not(.results-page) .skills p,body:not(.school-site):not(.results-page) .closing-grid>p{color:var(--muted)!important;line-height:1.85}
 body:not(.school-site):not(.results-page) .identity-card,body:not(.school-site):not(.results-page) .service-item,body:not(.school-site):not(.results-page) .skill,body:not(.school-site):not(.results-page) .timeline article{
- border:1px solid var(--school-border)!important;border-radius:16px!important;box-shadow:0 10px 32px rgba(18,58,90,.055)!important;
+ background:#fff!important;color:var(--ink)!important;border:1px solid var(--line)!important;border-radius:14px;box-shadow:0 8px 26px rgba(20,48,76,.05)
 }
-body:not(.school-site):not(.results-page) .intro,body:not(.school-site):not(.results-page) .services-section,body:not(.school-site):not(.results-page) .achievements,body:not(.school-site):not(.results-page) .skills{padding-block:76px!important}
-body:not(.school-site):not(.results-page) .eyebrow{color:var(--school-blue)!important}
-body:not(.school-site):not(.results-page) footer{background:#0d2b45!important;color:#d4dfeb!important}
+body:not(.school-site):not(.results-page) .identity-card h2,body:not(.school-site):not(.results-page) .service-item h3,body:not(.school-site):not(.results-page) .skill h3,body:not(.school-site):not(.results-page) .timeline h3{color:var(--navy)!important}
+body:not(.school-site):not(.results-page) .identity-card li,body:not(.school-site):not(.results-page) .skill strong{color:#43576b!important}
+body:not(.school-site):not(.results-page) .intro,body:not(.school-site):not(.results-page) .services-section,body:not(.school-site):not(.results-page) .achievements,body:not(.school-site):not(.results-page) .skills{background:#fff!important;color:var(--ink)!important}
+body:not(.school-site):not(.results-page) .section-head h2,body:not(.school-site):not(.results-page) .intro h2{color:var(--navy)!important}
+body:not(.school-site):not(.results-page) .button-gold{background:var(--navy)!important;color:#fff!important;border:1px solid var(--navy)!important}
+body:not(.school-site):not(.results-page) .text-link{color:var(--blue)!important}
+body:not(.school-site):not(.results-page) footer{padding:26px 20px;background:var(--navy-dark)!important;color:#d7e1eb!important;text-align:center}
+body:not(.school-site):not(.results-page) footer p{color:#d7e1eb!important;font-size:12px}
 
-/* Accessible keyboard focus and motion sensitivity */
-body.school-site a:focus-visible,body.results-page a:focus-visible,body.results-page button:focus-visible,
-body:not(.school-site):not(.results-page) a:focus-visible{outline:3px solid #d7aa60!important;outline-offset:3px!important}
+/* Responsive layouts */
 @media(max-width:900px){
- body.school-site .about-hero{padding:60px 0!important}
- body.school-site .about-hero-content,body.school-site .about-intro-grid,body.school-site .learning-section .learning-grid{width:calc(100% - 36px)!important;grid-template-columns:1fr!important}
- body.school-site .faculty-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- body.results-page .portal-nav{flex-wrap:wrap!important;gap:10px!important}
- body.results-page .portal-nav nav{order:3!important;width:100%!important;overflow-x:auto!important}
- body.results-page .portal-nav nav a{white-space:nowrap!important}
+ body.school-site .header,body.results-page .portal-nav,body:not(.school-site):not(.results-page) .topbar{flex-wrap:wrap;gap:10px;padding:12px 22px}
+ body.school-site .navbar{flex-wrap:wrap;gap:10px}
+ body.school-site .nav,body.school-site .menu{order:3;width:100%;justify-content:flex-start;overflow-x:auto}
+ body.school-site .hero-grid,body.school-site .about-hero-content,body.school-site .about-home .about-grid,body.school-site .learning .learning-grid,body.school-site .learning-section .learning-grid,body:not(.school-site):not(.results-page) .hero-grid{grid-template-columns:1fr}
+ body.school-site .hero{padding:54px 0}
+ body.school-site .hero-image{max-width:650px;width:100%;margin:0 auto}
+ body.school-site .hero-image img{height:360px}
+ body.school-site .about-hero-image img,body.school-site .about-image img,body.school-site .learning-image img{height:330px}
+ body.school-site .service-grid,body.school-site .value-cards,body.school-site .faculty-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.school-site .it-admin-card{grid-template-columns:1fr}
+ body.school-site .section-top{align-items:flex-start;flex-direction:column;gap:10px}
+ body.results-page .portal-nav nav{order:3;width:100%;overflow-x:auto;justify-content:flex-start}
+ body.results-page .portal-nav nav a{white-space:nowrap}
 }
 @media(max-width:600px){
- body.school-site .about-hero h1,body.school-site .about-hero-text h1{font-size:clamp(2.3rem,10vw,3.3rem)!important}
- body.school-site .faculty-grid,body.school-site .value-cards{grid-template-columns:1fr!important}
- body.school-site .cta>.container{width:calc(100% - 30px)!important;padding:25px!important}
- body.results-page .portal-nav{padding:12px 15px!important}
- body.results-page .portal-action{font-size:.76rem!important;padding:9px 10px!important}
- body.results-page>.container{padding:36px 14px 50px!important}
- body.results-page .search-box{padding:19px!important}
- body.results-page .input-grid,body.results-page .meta-row,body.results-page .signature-row{grid-template-columns:1fr!important;gap:0!important}
- body.results-page .result-card{padding:10px!important}
- body.results-page .result-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}
- body.results-page .meta-item{align-items:flex-start!important}
- body.results-page .meta-item strong{text-align:right!important}
+ .container,.page-width{width:calc(100% - 32px)}
+ body.school-site .header,body.results-page .portal-nav,body:not(.school-site):not(.results-page) .topbar{padding:11px 16px}
+ body.school-site .logo-text strong,body.results-page .portal-brand strong{font-size:12px}
+ body.school-site .header-button,body.school-site .result-btn,body.results-page .portal-action{padding:9px 11px;font-size:11px}
+ body.school-site .nav a,body.school-site .menu a,body.results-page .portal-nav nav a{padding:9px 10px;font-size:12px}
+ body.school-site .hero h1,body.school-site .about-hero h1{font-size:clamp(35px,10vw,46px)}
+ body.school-site .hero-content>p{font-size:14px}
+ body.school-site .hero-image img{height:285px}
+ body.school-site .hero-image-card{left:10px;bottom:10px;max-width:200px}
+ body.school-site .services,body.school-site .about-home,body.school-site .learning,body.school-site .about-introduction,body.school-site .school-values,body.school-site .learning-section{padding:52px 0}
+ body.school-site .service-grid,body.school-site .value-cards,body.school-site .faculty-grid,body.school-site .stats-grid,body.school-site .footer-grid{grid-template-columns:1fr}
+ body.school-site .service-card{min-height:0;padding:19px}
+ body.school-site .about-image img,body.school-site .learning-image img,body.school-site .about-hero-image img{height:270px}
+ body.school-site .stats-grid{gap:0}
+ body.school-site .stat{border-right:0;border-bottom:1px solid rgba(255,255,255,.18)}
+ body.school-site .stat:last-child{border-bottom:0}
+ body.school-site .cta-content{align-items:flex-start;flex-direction:column;padding:24px}
+ body.school-site .footer-grid{gap:22px}
+ body.results-page>.container{width:calc(100% - 24px);padding:32px 0 48px}
+ body.results-page .search-box{padding:17px}
+ body.results-page .input-grid,body.results-page .meta-row,body.results-page .signature-row{grid-template-columns:1fr;gap:0}
+ body.results-page .result-card{padding:9px}
+ body.results-page .result-sheet{padding:13px}
+ body.results-page .result-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.results-page .meta-item{align-items:flex-start}
+ body.results-page .meta-item strong{text-align:right}
+ body.results-page #searchBtn,body.results-page #printBtn{width:100%}
+ body:not(.school-site):not(.results-page) .hero-grid{gap:28px}
+ body:not(.school-site):not(.results-page) .hero h1{font-size:clamp(34px,10vw,46px)}
 }
 @media print{
  body.results-page{background:#fff!important}
  body.results-page .portal-nav,body.results-page .search-box,body.results-page #printBtn,body.results-page .site-footer{display:none!important}
- body.results-page>.container{max-width:none!important;padding:0!important}
- body.results-page .result-card{border:0!important;box-shadow:none!important;padding:0!important}
- body.results-page .result-sheet{border:0!important;padding:0!important}
- body.results-page .result-table th{background:#e9eef4!important;color:#172b40!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body.results-page>.container{width:100%;padding:0!important}
+ body.results-page .result-card{padding:0!important;border:0!important;box-shadow:none!important}
+ body.results-page .result-sheet{padding:0!important;border:0!important}
+ body.results-page .result-table th{background:#e7edf3!important;color:#172b3a!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
-
-
-/* FINAL OVERRIDE: Results portal must use the light academic theme. */
-html body.results-page{
- background:#f3f6fa!important;color:#172b40!important;
- color-scheme:light!important;
-}
-html body.results-page .portal-nav{
- background:#fff!important;background-image:none!important;
- border-bottom:1px solid #dfe7ef!important;box-shadow:0 5px 24px rgba(18,58,90,.05)!important;
- backdrop-filter:none!important;
-}
-html body.results-page .portal-brand strong,
-html body.results-page .container>.header h1,
-html body.results-page .institution-name{color:#123a5a!important}
-html body.results-page .portal-brand small,
-html body.results-page .container>.header h2,
-html body.results-page .result-title,
-html body.results-page .result-subtitle{color:#64748b!important}
-html body.results-page .portal-nav nav a{color:#53657a!important;text-decoration:none!important}
-html body.results-page .portal-nav nav a.active,
-html body.results-page .portal-nav nav a:hover{color:#123a5a!important;background:#edf3f8!important}
-html body.results-page .portal-mark{background:#123a5a!important;color:#fff!important;border:0!important;box-shadow:none!important}
-html body.results-page .portal-action{background:#123a5a!important;color:#fff!important;border:1px solid #123a5a!important}
-html body.results-page .container>.header,
-html body.results-page .container>.header *{text-shadow:none!important}
-html body.results-page .search-box,
-html body.results-page .result-card,
-html body.results-page .result-sheet{background:#fff!important;color:#172b40!important}
-html body.results-page .search-box{border:1px solid #dfe7ef!important;box-shadow:0 18px 50px rgba(18,58,90,.09)!important}
-html body.results-page .input-group label{color:#34445c!important}
-html body.results-page .input-group input,
-html body.results-page .input-group select{background:#fbfcfe!important;color:#172b40!important;border-color:#cbd7e3!important}
-html body.results-page #searchBtn,
-html body.results-page #printBtn{background:#123a5a!important;color:#fff!important}
-html body.results-page .result-card{border:1px solid #dfe7ef!important}
-html body.results-page .result-table th{background:#123a5a!important;color:#fff!important}
-html body.results-page .result-table td{color:#172b40!important}
-html body.results-page .summary-box,
-html body.results-page .meta-item{background:#f5f8fb!important;color:#172b40!important}
-html body.results-page .summary-box strong,
-html body.results-page .meta-item strong{color:#123a5a!important}
-html body.results-page .site-footer{background:#0d2b45!important;color:#d4dfeb!important}
-@media(max-width:600px){
- html body.results-page .portal-nav{background:#fff!important}
-}
-
-
-/* Hard reset for legacy dark visual layer: professional light school brand */
-html body.school-site{
- color-scheme:light!important;background:#f5f7fb!important;color:#17243a!important;
-}
-html body.school-site .header{background:#fff!important;border-bottom:1px solid #e2e8f0!important;backdrop-filter:none!important}
-html body.school-site .hero{
- background:linear-gradient(115deg,#f0f5fb 0%,#fff 64%,#fff8ed 100%)!important;
- color:#17243a!important;
-}
-html body.school-site .hero h1,html body.school-site .hero h2,
-html body.school-site .section-top h2,html body.school-site .about-text h2,
-html body.school-site .learning-text h2,html body.school-site .section-heading h2{
- color:#17243a!important;
-}
-html body.school-site .hero h1 strong,html body.school-site .hero h1 span,
-html body.school-site .hero h2 span{color:#2864a8!important}
-html body.school-site .hero p,html body.school-site .section-top>p,
-html body.school-site .about-text p,html body.school-site .learning-text p{
- color:#64748b!important;
-}
-html body.school-site .hero-label{background:#fff!important;border:1px solid #dce6f0!important;color:#2864a8!important}
-html body.school-site .hero-image img,html body.school-site .about-image img,html body.school-site .learning-image img{
- border-radius:18px!important;box-shadow:0 16px 44px rgba(18,58,90,.12)!important;
-}
-html body.school-site .about,html body.school-site .services,html body.school-site .learning,
-html body.school-site .stats,html body.school-site .about-introduction,
-html body.school-site .school-values,html body.school-site .it-admin-section,
-html body.school-site .learning-section,html body.school-site .school-promise,
-html body.school-site .cta{background:#fff!important;color:#17243a!important}
-html body.school-site .service-card,html body.school-site .stat,
-html body.school-site .value-card,html body.school-site .faculty-card,
-html body.school-site .it-admin-card{
- background:#fff!important;color:#17243a!important;border:1px solid #e2e8f0!important;
- border-radius:16px!important;box-shadow:0 8px 28px rgba(18,58,90,.055)!important;
-}
-html body.school-site .service-card h3,html body.school-site .stat h3,
-html body.school-site .value-card h3,html body.school-site .faculty-card h3{color:#17243a!important}
-html body.school-site .service-card p,html body.school-site .stat p,
-html body.school-site .value-card p,html body.school-site .faculty-card p{color:#64748b!important}
-html body.school-site .stats{background:#123a5a!important;color:#fff!important}
-html body.school-site .stats .stat{background:rgba(255,255,255,.07)!important;border:1px solid rgba(255,255,255,.18)!important}
-html body.school-site .stats .stat strong,html body.school-site .stats .stat h3{color:#fff!important}
-html body.school-site .stats .stat p{color:#d8e4ef!important}
-html body.school-site .footer{background:#0d2b45!important;color:#d4dfeb!important}
-html body.school-site .footer a,html body.school-site .footer p{color:#d4dfeb!important}
-html body.school-site .header .nav a,html body.school-site .header .menu a{color:#53657a!important}
-html body.school-site .header .nav a.active,html body.school-site .header .menu a.active{color:#123a5a!important;background:#edf3f8!important}
-html body.school-site .header-button,html body.school-site .result-btn{background:#123a5a!important;color:#fff!important;border:1px solid #123a5a!important;box-shadow:none!important}
-html body.school-site .header-button:hover,html body.school-site .result-btn:hover{background:#2864a8!important}
-
-/* Personal profile page also follows the same light professional identity */
-html body:not(.school-site):not(.results-page){
- color-scheme:light!important;background:#f5f7fb!important;color:#17243a!important;
-}
-html body:not(.school-site):not(.results-page) .topbar{
- background:#fff!important;background-image:none!important;border-bottom:1px solid #e2e8f0!important;backdrop-filter:none!important;
-}
-html body:not(.school-site):not(.results-page) .topbar .brand strong{color:#123a5a!important}
-html body:not(.school-site):not(.results-page) .topbar .brand small,
-html body:not(.school-site):not(.results-page) .topbar nav a{color:#64748b!important}
-html body:not(.school-site):not(.results-page) .hero,
-html body:not(.school-site):not(.results-page) .closing{
- background:linear-gradient(115deg,#f0f5fb 0%,#fff 68%,#fff8ed 100%)!important;color:#17243a!important;
-}
-html body:not(.school-site):not(.results-page) .hero h1,
-html body:not(.school-site):not(.results-page) .hero h2,
-html body:not(.school-site):not(.results-page) .closing h2{color:#17243a!important}
-html body:not(.school-site):not(.results-page) .hero p,
-html body:not(.school-site):not(.results-page) .intro p,
-html body:not(.school-site):not(.results-page) .skills p,
-html body:not(.school-site):not(.results-page) .services-section p{color:#64748b!important}
-html body:not(.school-site):not(.results-page) .identity-card,
-html body:not(.school-site):not(.results-page) .service-item,
-html body:not(.school-site):not(.results-page) .skill,
-html body:not(.school-site):not(.results-page) .timeline article{
- background:#fff!important;color:#17243a!important;border:1px solid #e2e8f0!important;
- box-shadow:0 10px 30px rgba(18,58,90,.06)!important;
-}
-html body:not(.school-site):not(.results-page) .identity-card h2,
-html body:not(.school-site):not(.results-page) .service-item h3,
-html body:not(.school-site):not(.results-page) .skill h3{color:#17243a!important}
-html body:not(.school-site):not(.results-page) .intro,
-html body:not(.school-site):not(.results-page) .services-section,
-html body:not(.school-site):not(.results-page) .achievements,
-html body:not(.school-site):not(.results-page) .skills{background:#fff!important;color:#17243a!important}
-html body:not(.school-site):not(.results-page) footer{background:#0d2b45!important;color:#d4dfeb!important}
-html body:not(.school-site):not(.results-page) .top-action,
-html body:not(.school-site):not(.results-page) .button-gold{background:#123a5a!important;color:#fff!important;border-color:#123a5a!important}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
