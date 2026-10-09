@@ -630,3 +630,49 @@ body:not(.school-site):not(.results-page) a:focus-visible{outline:3px solid #d7a
  body.results-page .result-sheet{border:0!important;padding:0!important}
  body.results-page .result-table th{background:#e9eef4!important;color:#172b40!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+
+/* FINAL OVERRIDE: Results portal must use the light academic theme. */
+html body.results-page{
+ background:#f3f6fa!important;color:#172b40!important;
+ color-scheme:light!important;
+}
+html body.results-page .portal-nav{
+ background:#fff!important;background-image:none!important;
+ border-bottom:1px solid #dfe7ef!important;box-shadow:0 5px 24px rgba(18,58,90,.05)!important;
+ backdrop-filter:none!important;
+}
+html body.results-page .portal-brand strong,
+html body.results-page .container>.header h1,
+html body.results-page .institution-name{color:#123a5a!important}
+html body.results-page .portal-brand small,
+html body.results-page .container>.header h2,
+html body.results-page .result-title,
+html body.results-page .result-subtitle{color:#64748b!important}
+html body.results-page .portal-nav nav a{color:#53657a!important;text-decoration:none!important}
+html body.results-page .portal-nav nav a.active,
+html body.results-page .portal-nav nav a:hover{color:#123a5a!important;background:#edf3f8!important}
+html body.results-page .portal-mark{background:#123a5a!important;color:#fff!important;border:0!important;box-shadow:none!important}
+html body.results-page .portal-action{background:#123a5a!important;color:#fff!important;border:1px solid #123a5a!important}
+html body.results-page .container>.header,
+html body.results-page .container>.header *{text-shadow:none!important}
+html body.results-page .search-box,
+html body.results-page .result-card,
+html body.results-page .result-sheet{background:#fff!important;color:#172b40!important}
+html body.results-page .search-box{border:1px solid #dfe7ef!important;box-shadow:0 18px 50px rgba(18,58,90,.09)!important}
+html body.results-page .input-group label{color:#34445c!important}
+html body.results-page .input-group input,
+html body.results-page .input-group select{background:#fbfcfe!important;color:#172b40!important;border-color:#cbd7e3!important}
+html body.results-page #searchBtn,
+html body.results-page #printBtn{background:#123a5a!important;color:#fff!important}
+html body.results-page .result-card{border:1px solid #dfe7ef!important}
+html body.results-page .result-table th{background:#123a5a!important;color:#fff!important}
+html body.results-page .result-table td{color:#172b40!important}
+html body.results-page .summary-box,
+html body.results-page .meta-item{background:#f5f8fb!important;color:#172b40!important}
+html body.results-page .summary-box strong,
+html body.results-page .meta-item strong{color:#123a5a!important}
+html body.results-page .site-footer{background:#0d2b45!important;color:#d4dfeb!important}
+@media(max-width:600px){
+ html body.results-page .portal-nav{background:#fff!important}
+}
