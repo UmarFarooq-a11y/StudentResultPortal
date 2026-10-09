@@ -290,3 +290,64 @@ body:not(.school-site):not(.results-page) .identity-card>p{color:#647487!importa
 body:not(.school-site):not(.results-page) .card-label{color:#356f9e!important}
 body:not(.school-site):not(.results-page) .identity-card ul{color:#43576b!important}
 body:not(.school-site):not(.results-page) .identity-card li:before{color:#c79a52!important}
+
+
+/* Visual refinement v6: sky blue, white, and restrained school-red accent */
+:root{--navy:#17466d;--navy-dark:#103653;--blue:#168bd2;--gold:#d84a4a;--pale:#eaf6fd;--bg:#f5faff}
+body.school-site .header{min-height:82px;background:#fff!important;border-bottom:3px solid #e5f4fc!important;box-shadow:0 5px 22px rgba(23,70,109,.07)!important}
+body.school-site .logo-mark{background:#168bd2!important;border:0!important;border-radius:12px!important;box-shadow:inset 0 -4px 0 rgba(16,54,83,.14)!important}
+body.school-site .nav a{padding:11px 13px!important;border-radius:8px!important}
+body.school-site .nav a.active{background:#eaf6fd!important;color:#126da9!important}
+body.school-site .header-button{background:#168bd2!important;border-color:#168bd2!important;border-radius:9px!important}
+body.school-site .header-button span{color:#fff!important}
+body.school-site .hero{background:linear-gradient(115deg,#eaf6fd 0%,#fff 58%,#fff5f5 100%)!important;padding-top:76px!important;padding-bottom:76px!important}
+body.school-site .hero-label{background:#fff!important;border-color:#cce8f7!important;color:#167ebc!important}
+body.school-site .hero-label span{background:#d84a4a!important}
+body.school-site .hero h1 strong,body.school-site .hero h1 span{color:#168bd2!important}
+body.school-site .button-primary,body.school-site .cta-button,body.school-site .simple-button,body.school-site .btn.primary{background:#168bd2!important;border-color:#168bd2!important}
+body.school-site .button-primary:hover,body.school-site .cta-button:hover,body.school-site .simple-button:hover,body.school-site .btn.primary:hover{background:#126da9!important}
+body.school-site .button-outline{border-color:#b8dff3!important;color:#17466d!important}
+body.school-site .hero-image img{border-radius:20px!important;box-shadow:0 20px 48px rgba(23,70,109,.16)!important}
+body.school-site .hero-image-card{border-left:4px solid #d84a4a!important}
+body.school-site .services,body.school-site .about-home,body.school-site .learning{background:#fff!important}
+body.school-site .section-top h2,body.school-site .about-text h2,body.school-site .learning-text h2,body.school-site .section-heading h2{color:#17466d!important}
+body.school-site .section-label,body.school-site .eyebrow,body.school-site .small-title{color:#168bd2!important}
+body.school-site .service-card{border:1px solid #dcecf6!important;border-radius:16px!important;box-shadow:0 8px 26px rgba(23,70,109,.055)!important;transition:transform .2s,box-shadow .2s!important}
+body.school-site .service-card:hover{transform:translateY(-4px)!important;box-shadow:0 15px 32px rgba(23,70,109,.1)!important}
+body.school-site .service-number{background:#eaf6fd!important;color:#167ebc!important}
+body.school-site .service-content h3{color:#17466d!important}
+body.school-site .service-link{color:#168bd2!important}
+body.school-site .stats{background:#168bd2!important}
+body.school-site .stats .stat{border-color:rgba(255,255,255,.24)!important}
+body.school-site .learning-list>div{border-left-color:#d84a4a!important;background:#f2f9fe!important}
+body.school-site .home-cta{background:#f1f9fe!important}
+body.school-site .cta-content{border-color:#d6ebf7!important;background:linear-gradient(110deg,#eaf6fd,#fff 72%,#fff5f5)!important}
+body.school-site .cta-content>div>span{color:#168bd2!important}
+body.school-site .cta-content h2 strong{color:#168bd2!important}
+body.school-site .footer{background:#103653!important;border-top:4px solid #168bd2!important}
+body.school-site .copyright{border-top-color:rgba(255,255,255,.2)!important}
+@media(max-width:900px){body.school-site .header{padding:12px 22px!important}body.school-site .navbar{gap:12px!important}}
+@media(max-width:600px){body.school-site .header{padding:11px 16px!important}body.school-site .hero{padding:50px 0!important}body.school-site .nav{padding-bottom:3px}}
+
+/* Keep developer profile visually related to the school site, not a dark portfolio */
+body:not(.school-site):not(.results-page) .topbar{min-height:82px!important;border-bottom:3px solid #e5f4fc!important;background:#fff!important;box-shadow:0 5px 22px rgba(23,70,109,.07)!important}
+body:not(.school-site):not(.results-page) .brand-mark{background:#168bd2!important;border:0!important;color:#fff!important;border-radius:12px!important}
+body:not(.school-site):not(.results-page) .topbar nav a{padding:10px 13px!important;border-radius:8px!important}
+body:not(.school-site):not(.results-page) .topbar nav a.active{background:#eaf6fd!important;color:#126da9!important}
+body:not(.school-site):not(.results-page) .top-action{background:#168bd2!important;border-color:#168bd2!important;color:#fff!important}
+body:not(.school-site):not(.results-page) .hero{background:linear-gradient(115deg,#eaf6fd 0%,#fff 65%,#fff5f5 100%)!important}
+body:not(.school-site):not(.results-page) .hero .eyebrow{color:#168bd2!important}
+body:not(.school-site):not(.results-page) .hero .eyebrow:before{background:#d84a4a!important;box-shadow:none!important}
+body:not(.school-site):not(.results-page) .hero h1 em,body:not(.school-site):not(.results-page) .intro h2 em,body:not(.school-site):not(.results-page) .closing h2 em{color:#168bd2!important}
+body:not(.school-site):not(.results-page) .button-gold{background:#168bd2!important;border-color:#168bd2!important;color:#fff!important}
+body:not(.school-site):not(.results-page) .identity-card{padding:22px!important;border-radius:18px!important;border:1px solid #dcecf6!important;box-shadow:0 18px 45px rgba(23,70,109,.1)!important}
+body:not(.school-site):not(.results-page) .identity-card .card-label{color:#168bd2!important}
+body:not(.school-site):not(.results-page) .profile-workspace-image{height:180px!important;object-position:center 48%!important;border-radius:13px!important}
+body:not(.school-site):not(.results-page) .identity-card h2{font-size:21px!important;color:#17466d!important}
+body:not(.school-site):not(.results-page) .identity-card li:before{color:#d84a4a!important}
+body:not(.school-site):not(.results-page) .service-item,body:not(.school-site):not(.results-page) .skill,body:not(.school-site):not(.results-page) .timeline article{border:1px solid #dcecf6!important;border-radius:15px!important;box-shadow:0 8px 24px rgba(23,70,109,.05)!important;transition:transform .2s,box-shadow .2s!important}
+body:not(.school-site):not(.results-page) .service-item:hover,body:not(.school-site):not(.results-page) .skill:hover,body:not(.school-site):not(.results-page) .timeline article:hover{transform:translateY(-3px)!important;box-shadow:0 14px 30px rgba(23,70,109,.09)!important}
+body:not(.school-site):not(.results-page) .service-item>span,body:not(.school-site):not(.results-page) .skill>span,body:not(.school-site):not(.results-page) .year{color:#d84a4a!important}
+body:not(.school-site):not(.results-page) .achievements{background:#eaf6fd!important;border-block-color:#d5eaf6!important}
+body:not(.school-site):not(.results-page) .closing{border-top:1px solid #dcecf6!important}
+body:not(.school-site):not(.results-page) footer{border-top:4px solid #168bd2!important;background:#103653!important}
