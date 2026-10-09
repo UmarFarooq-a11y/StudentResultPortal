@@ -279,3 +279,14 @@ body:not(.school-site):not(.results-page) footer p{color:#d7e1eb!important;font-
  body.results-page .result-table th{background:#e7edf3!important;color:#172b3a!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Final photo polish for real school homepage and developer profile */
+body.school-site .hero-image img{width:100%;height:clamp(330px,39vw,470px);object-fit:cover;object-position:center 42%;border:1px solid rgba(23,59,94,.08)}
+body.school-site .hero-image:after{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(180deg,transparent 55%,rgba(16,45,73,.14));pointer-events:none}
+body:not(.school-site):not(.results-page) .profile-workspace-image{display:block;width:100%;height:205px;margin:20px 0 19px;object-fit:cover;border-radius:12px;box-shadow:0 8px 24px rgba(20,48,76,.09)}
+body:not(.school-site):not(.results-page) .identity-card{padding:24px}
+body:not(.school-site):not(.results-page) .identity-card h2{color:#173b5e!important;font-size:22px}
+body:not(.school-site):not(.results-page) .identity-card>p{color:#647487!important}
+body:not(.school-site):not(.results-page) .card-label{color:#356f9e!important}
+body:not(.school-site):not(.results-page) .identity-card ul{color:#43576b!important}
+body:not(.school-site):not(.results-page) .identity-card li:before{color:#c79a52!important}
