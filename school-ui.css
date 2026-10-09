@@ -250,3 +250,172 @@ body:not(.school-site):not(.results-page) .top-action{background:var(--ui-navy)!
   .search-box{padding:17px!important;border-radius:17px!important}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+
+/* === Layout correction and refined home-page composition === */
+/* Keep page header as a full-width wrapper; layout belongs to its inner navbar. */
+body.school-site .header{
+  display:block!important;position:sticky!important;top:0!important;
+  min-height:0!important;padding:0!important;margin:0!important;
+  background:rgba(255,255,255,.94)!important;
+  border-bottom:1px solid var(--ui-line)!important;
+  box-shadow:0 4px 18px rgba(23,36,58,.035)!important;
+}
+body.school-site .header .container.navbar{
+  width:min(1320px,calc(100% - 48px))!important;
+  min-height:78px!important;margin:0 auto!important;padding:0!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  gap:24px!important;flex-wrap:nowrap!important;
+}
+body.school-site .header .nav{display:flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;flex-wrap:wrap!important;order:initial!important;width:auto!important;overflow:visible!important}
+body.school-site .header .nav a{flex:none!important}
+body.school-site .header .logo{display:flex!important;align-items:center!important}
+body.school-site .header .header-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:none!important}
+body.school-site main{overflow:clip}
+body.school-site .hero{
+  padding:0!important;min-height:620px;
+  background:linear-gradient(120deg,#f5f8fc 0%,#fff 58%,#fdf7ed 100%)!important;
+  border-bottom:1px solid #e5ebf2!important;
+}
+body.school-site .hero:before{
+  inset:auto -110px -210px auto!important;width:480px;height:480px;
+  background:none!important;border:1px solid rgba(40,100,168,.10);
+  box-shadow:0 0 0 35px rgba(40,100,168,.025),0 0 0 75px rgba(40,100,168,.018);
+}
+body.school-site .hero:after{display:none!important}
+body.school-site .hero .hero-grid{
+  width:min(1180px,calc(100% - 48px))!important;min-height:620px;
+  margin:0 auto!important;padding:72px 0!important;
+  display:grid!important;grid-template-columns:minmax(0,1.02fr) minmax(320px,.88fr)!important;
+  align-items:center!important;gap:clamp(38px,5vw,72px)!important;
+}
+body.school-site .hero-content{position:relative;z-index:1;max-width:650px}
+body.school-site .hero-label{margin-bottom:20px!important;color:#2864a8!important;letter-spacing:.14em!important;font-size:.7rem!important}
+body.school-site .hero-label span{width:8px!important;height:8px!important;border-radius:50%;margin-right:3px!important;background:#1aa779!important;box-shadow:0 0 0 4px rgba(26,167,121,.12)!important}
+body.school-site .hero h1{
+  margin:0 0 22px!important;max-width:660px!important;
+  font-size:clamp(3rem,5.3vw,4.65rem)!important;line-height:1.045!important;
+  letter-spacing:-.065em!important;color:#17243a!important;
+}
+body.school-site .hero h1 strong{display:block;margin-top:5px;color:#2864a8!important}
+body.school-site .hero-content>p{max-width:550px;margin:0 0 27px!important;color:#5c6c80!important;font-size:1rem!important;line-height:1.85!important}
+body.school-site .hero-buttons{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:10px!important}
+body.school-site .hero-buttons .button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 18px;border-radius:11px!important;font-size:.81rem!important}
+body.school-site .hero-buttons .button-primary{background:#123a5a!important;border:1px solid #123a5a!important;color:white!important;box-shadow:0 8px 18px rgba(18,58,90,.16)!important}
+body.school-site .hero-buttons .button-primary:hover{background:#2864a8!important}
+body.school-site .hero-buttons .button-outline{background:#fff!important;border:1px solid #dce4ed!important;color:#233b54!important}
+body.school-site .hero-buttons .button-outline:hover{background:#f3f7fb!important;border-color:#b8cde1!important}
+body.school-site .hero-trust{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin-top:25px!important}
+body.school-site .trust-item{min-width:0!important;padding:13px 13px!important;border:1px solid #e2e8f0!important;border-radius:12px!important;background:rgba(255,255,255,.82)!important;box-shadow:none!important}
+body.school-site .trust-item strong{display:block;margin-bottom:3px;color:#123a5a!important;font-size:.88rem!important}
+body.school-site .trust-item span{display:block;color:#64748b!important;font-size:.67rem!important;line-height:1.5!important}
+body.school-site .hero-note{margin-top:19px!important}
+body.school-site .hero-note p{font-size:.73rem!important;color:#77869a!important}
+body.school-site .hero-image{position:relative!important;min-width:0!important;margin:0!important;padding:0!important;border-radius:24px!important;overflow:visible!important;background:transparent!important;box-shadow:none!important}
+body.school-site .hero-image img{
+  display:block;width:100%!important;height:490px!important;max-height:490px!important;
+  object-fit:cover!important;object-position:center!important;border-radius:24px!important;
+  box-shadow:0 25px 55px rgba(23,36,58,.16)!important;border:1px solid rgba(18,58,90,.09)
+}
+body.school-site .hero-image-card{
+  left:-28px!important;bottom:24px!important;max-width:calc(100% - 10px);
+  padding:17px 20px!important;border:1px solid #e3eaf2!important;border-radius:14px!important;
+  background:rgba(255,255,255,.96)!important;box-shadow:0 15px 36px rgba(23,36,58,.12)!important
+}
+body.school-site .hero-image-card strong{color:#17243a!important;font-size:.84rem!important}
+body.school-site .hero-image-card span{color:#64748b!important;font-size:.72rem!important}
+body.school-site .services{padding:78px 0!important;background:#fff!important}
+body.school-site .section-top{align-items:end!important;gap:30px!important;margin-bottom:30px!important}
+body.school-site .section-top h2{font-size:clamp(1.9rem,3vw,2.55rem)!important;letter-spacing:-.05em!important;color:#17243a!important}
+body.school-site .section-top h2 span{color:#2864a8!important}
+body.school-site .section-top>p{max-width:370px;color:#64748b!important;font-size:.88rem!important}
+body.school-site .service-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important}
+body.school-site .service-card{
+  min-height:235px!important;padding:25px!important;border:1px solid #e2e8f0!important;
+  border-radius:17px!important;background:#fff!important;box-shadow:0 5px 18px rgba(23,36,58,.035)!important
+}
+body.school-site .service-card:hover{transform:translateY(-4px)!important;border-color:#c7d9eb!important;box-shadow:0 14px 30px rgba(23,36,58,.08)!important}
+body.school-site .service-card.featured{background:linear-gradient(145deg,#123a5a,#1d527a)!important;border-color:transparent!important}
+body.school-site .service-number{color:#d7a85b!important;font-size:.72rem!important}
+body.school-site .service-content h3{font-size:1.15rem!important;color:#17243a!important}
+body.school-site .service-card.featured .service-content h3{color:#fff!important}
+body.school-site .service-content p{color:#64748b!important;font-size:.81rem!important;line-height:1.75!important}
+body.school-site .service-card.featured .service-content p{color:#e1eaf2!important}
+body.school-site .service-link{color:#2864a8!important;font-size:.75rem!important}
+body.school-site .service-card.featured .service-link{color:#f0cd91!important}
+body.school-site .about-home,body.school-site .learning{background:#f5f7fb!important}
+body.school-site .about-grid,body.school-site .learning-grid{gap:clamp(35px,6vw,75px)!important}
+body.school-site .about-image img,body.school-site .learning-image img{width:100%!important;object-fit:cover!important;border-radius:22px!important;box-shadow:0 18px 42px rgba(23,36,58,.12)!important}
+body.school-site .about-image img{height:430px!important}
+body.school-site .about-text h2,body.school-site .learning-text h2{color:#17243a!important;font-size:clamp(2rem,3.5vw,2.8rem)!important;letter-spacing:-.055em!important}
+body.school-site .about-text h2 span,body.school-site .learning-text h2 span{color:#2864a8!important}
+body.school-site .about-text p,body.school-site .learning-text>p{color:#64748b!important;font-size:.9rem!important;line-height:1.85!important}
+body.school-site .text-button{color:#123a5a!important;font-size:.83rem!important}
+body.school-site .stats{padding:54px 0!important;background:#123a5a!important}
+body.school-site .stats-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:13px!important}
+body.school-site .stat{padding:20px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:15px!important;background:rgba(255,255,255,.055)!important}
+body.school-site .stat strong{color:#e8bf7b!important}
+body.school-site .stat h3{color:#fff!important;font-size:1rem!important}
+body.school-site .stat p{color:#d3deea!important;line-height:1.7!important}
+body.school-site .learning-list>div{background:#fff!important;border:1px solid #e2e8f0!important;border-radius:13px!important}
+body.school-site .learning-list strong{color:#17243a!important}
+body.school-site .learning-list p{color:#64748b!important}
+body.school-site .home-cta{padding:58px 0!important;background:#fff!important}
+body.school-site .cta-content{padding:clamp(26px,4vw,44px)!important;border:1px solid #dce6f0!important;border-radius:22px!important;background:linear-gradient(115deg,#f0f5fb,#fff 70%,#fff8ed)!important}
+body.school-site .cta-content>div>span{color:#2864a8!important;font-size:.7rem!important;font-weight:800!important;letter-spacing:.12em!important}
+body.school-site .cta-content h2{color:#17243a!important;font-size:clamp(2rem,4vw,3rem)!important;letter-spacing:-.055em!important}
+body.school-site .cta-content h2 strong{color:#2864a8!important}
+body.school-site .cta-content p{color:#64748b!important}
+body.school-site .cta-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:14px 19px!important;border-radius:11px!important;background:#123a5a!important;color:#fff!important}
+body.school-site .footer{background:#0d2b45!important}
+body.school-site .footer-brand .logo-text strong{color:#fff!important}
+body.school-site .footer-brand .logo-text span{color:#b5c5d5!important}
+body.school-site .footer-menu a{color:#c4d1df!important}
+body.school-site .copyright{color:#a8b8c9!important}
+@media(max-width:980px){
+ body.school-site .header .container.navbar{width:calc(100% - 32px)!important;gap:12px!important}
+ body.school-site .header .nav{gap:1px!important}
+ body.school-site .header .nav a{padding:8px 9px!important;font-size:.75rem!important}
+ body.school-site .hero .hero-grid{grid-template-columns:minmax(0,1fr) minmax(280px,.85fr)!important;gap:30px!important}
+ body.school-site .hero-image img{height:420px!important}
+ body.school-site .hero h1{font-size:clamp(2.6rem,5vw,3.7rem)!important}
+ body.school-site .hero-trust{grid-template-columns:1fr!important}
+ body.school-site .trust-item{padding:10px 12px!important}
+}
+@media(max-width:760px){
+ body.school-site .header .container.navbar{min-height:0!important;flex-wrap:wrap!important;padding:13px 0!important;gap:12px!important}
+ body.school-site .header .nav{order:3!important;width:100%!important;justify-content:flex-start!important;overflow-x:auto!important;flex-wrap:nowrap!important;padding:3px 0!important}
+ body.school-site .header .nav a{flex:none!important}
+ body.school-site .hero{min-height:0!important}
+ body.school-site .hero .hero-grid{min-height:0!important;width:calc(100% - 36px)!important;grid-template-columns:1fr!important;padding:48px 0 54px!important;gap:30px!important}
+ body.school-site .hero h1{font-size:clamp(2.65rem,10vw,4rem)!important}
+ body.school-site .hero-image{width:100%!important;max-width:560px!important;margin:0 auto!important}
+ body.school-site .hero-image img{height:clamp(280px,75vw,430px)!important}
+ body.school-site .hero-image-card{left:12px!important;bottom:14px!important}
+ body.school-site .hero-trust{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ body.school-site .trust-item{padding:11px 9px!important}
+ body.school-site .trust-item strong{font-size:.82rem!important}
+ body.school-site .trust-item span{font-size:.63rem!important}
+ body.school-site .section-top{display:block!important}
+ body.school-site .section-top>p{margin-top:14px!important}
+ body.school-site .service-grid{grid-template-columns:1fr!important}
+ body.school-site .service-card{min-height:200px!important}
+ body.school-site .about-grid,body.school-site .learning-grid{grid-template-columns:1fr!important;gap:30px!important}
+ body.school-site .about-image img{height:clamp(260px,70vw,400px)!important}
+ body.school-site .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body.school-site .cta-content{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+}
+@media(max-width:480px){
+ body.school-site .header .container.navbar{width:calc(100% - 28px)!important}
+ body.school-site .header .header-button{min-height:39px!important;padding:0 11px!important;font-size:.73rem!important}
+ body.school-site .logo-mark{width:39px!important;height:39px!important}
+ body.school-site .logo-text strong{font-size:.82rem!important}
+ body.school-site .logo-text span{font-size:.67rem!important}
+ body.school-site .hero .hero-grid{width:calc(100% - 30px)!important}
+ body.school-site .hero-buttons .button{min-height:45px!important;padding:0 13px!important;font-size:.74rem!important}
+ body.school-site .hero-trust{gap:7px!important}
+ body.school-site .trust-item{padding:10px 7px!important}
+ body.school-site .trust-item span{font-size:.59rem!important}
+ body.school-site .stats-grid{gap:9px!important}
+ body.school-site .stat{padding:15px!important}
+}
