@@ -186,3 +186,44 @@ body[data-theme="dark"] .gallery-heading h2{color:#edf6ff}
 body[data-theme="dark"] .gallery-heading>p{color:#b0c0cf}
 @media(max-width:850px){.gallery-grid{grid-template-columns:1fr 1fr}.gallery-card-large{grid-column:1/-1;min-height:380px}.gallery-card{min-height:310px}.gallery-heading{align-items:start;flex-direction:column;gap:14px}}
 @media(max-width:560px){.learning-gallery{padding:58px 0}.gallery-grid{grid-template-columns:1fr;gap:14px}.gallery-card-large{grid-column:auto;min-height:320px}.gallery-card{min-height:300px}.gallery-heading>p{font-size:14px}}
+
+
+/* Contemporary education-platform hero: editorial photo collage */
+body.school-site .hero{position:relative;overflow:hidden;padding:clamp(58px,7vw,96px) 0 82px!important;background:radial-gradient(ellipse at 84% 12%,rgba(36,177,133,.12),transparent 29%),radial-gradient(ellipse at 12% 92%,rgba(242,201,76,.14),transparent 27%),linear-gradient(135deg,#f7fbff 0%,#edf7ff 52%,#f8fcf8 100%)!important}
+body.school-site .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.96fr)!important;gap:clamp(30px,5vw,76px)!important}
+body.school-site .hero-label{display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:100%;padding:9px 13px;border:1px solid #d8eaf6;border-radius:999px;background:rgba(255,255,255,.8);color:#16865b!important;font-size:10px!important;letter-spacing:1.35px!important}
+body.school-site .hero-label span{width:7px!important;height:7px!important;border-radius:50%;margin:0!important;background:#16865b!important}
+body.school-site .hero h1{max-width:640px;font-size:clamp(2.8rem,5.1vw,4.55rem)!important;line-height:1.04!important;letter-spacing:-.065em!important}
+body.school-site .hero-content>p{max-width:510px!important;font-size:16px!important;line-height:1.8!important;color:#526b80!important}
+body.school-site .hero-buttons{gap:10px!important}
+body.school-site .hero-buttons .button{border-radius:12px!important;padding:14px 18px!important}
+body.school-site .hero-buttons .button-outline{background:rgba(255,255,255,.76)!important}
+body.school-site .hero-trust{gap:10px!important;margin-top:26px!important}
+body.school-site .trust-item{min-width:0;flex:1;padding:13px 14px!important;border:1px solid rgba(210,229,241,.95)!important;border-radius:14px!important;background:rgba(255,255,255,.72)!important;box-shadow:none!important}
+body.school-site .trust-item strong{font-size:16px!important;color:#17324b!important}
+body.school-site .trust-item span{font-size:10px!important;line-height:1.45!important;color:#63788b!important}
+body.school-site .hero-visual{min-height:510px;isolation:isolate;display:block!important;position:relative!important;padding:18px 16px 35px 26px}
+body.school-site .hero-photo-main{position:absolute;z-index:1;top:8px;right:4px;width:83%;height:440px;border-radius:32px;overflow:hidden;background:#d9eaf5;box-shadow:0 24px 65px rgba(29,78,110,.17);transform:rotate(1.2deg)}
+body.school-site .hero-photo-main img{width:100%;height:100%;object-fit:cover!important;object-position:center!important;border-radius:0!important;box-shadow:none!important}
+body.school-site .hero-photo-small{position:absolute;z-index:3;left:0;bottom:24px;width:43%;height:190px;overflow:hidden;border:7px solid #f7fbff;border-radius:24px;background:#dcece6;box-shadow:0 18px 45px rgba(20,56,83,.17);transform:rotate(-3deg)}
+body.school-site .hero-photo-small img{width:100%;height:100%;object-fit:cover!important;border-radius:0!important;box-shadow:none!important}
+body.school-site .hero-visual .hero-image-card{z-index:4;left:auto!important;right:-5px!important;bottom:0!important;display:flex;align-items:center;gap:12px;max-width:285px;padding:15px 18px!important;border:1px solid rgba(255,255,255,.85)!important;border-left:1px solid rgba(255,255,255,.85)!important;border-radius:16px!important;background:rgba(255,255,255,.94)!important;box-shadow:0 16px 45px rgba(18,54,82,.15)!important;backdrop-filter:blur(14px)}
+body.school-site .hero-card-icon{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:12px;background:#e5f7ef;color:#16865b;font-size:20px}
+body.school-site .hero-visual .hero-image-card strong{font-size:12px!important;color:#17324b!important}
+body.school-site .hero-visual .hero-image-card span:not(.hero-card-icon){display:block;margin-top:3px;font-size:10px!important;color:#63788b!important}
+body.school-site .hero-floating-badge{position:absolute;z-index:4;top:35px;left:0;display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid rgba(255,255,255,.9);border-radius:15px;background:rgba(255,255,255,.95);box-shadow:0 14px 38px rgba(18,54,82,.13);backdrop-filter:blur(12px)}
+body.school-site .hero-badge-dot{width:10px;height:10px;border-radius:50%;background:#20a56f;box-shadow:0 0 0 5px #e3f7ed}
+body.school-site .hero-floating-badge strong{display:block;font-size:11px;color:#17324b}
+body.school-site .hero-floating-badge small{display:block;margin-top:2px;font-size:10px;color:#63788b}
+body.school-site .hero-decor{position:absolute;z-index:-1;border-radius:50%;pointer-events:none}
+body.school-site .hero-decor-one{width:130px;height:130px;right:-12px;top:-5px;background:rgba(242,201,76,.34)}
+body.school-site .hero-decor-two{width:80px;height:80px;left:20%;bottom:10px;background:rgba(22,134,91,.14)}
+@media(max-width:1050px){body.school-site .hero-grid{gap:28px!important}body.school-site .hero-visual{min-height:450px}body.school-site .hero-photo-main{height:390px}body.school-site .hero-photo-small{height:155px}}
+@media(max-width:760px){body.school-site .hero{padding:52px 0 58px!important}body.school-site .hero-grid{grid-template-columns:1fr!important;gap:28px!important}body.school-site .hero h1{font-size:clamp(2.6rem,11vw,4rem)!important}body.school-site .hero-visual{width:100%;max-width:560px;min-height:430px;margin:0 auto;padding:12px 10px 30px 18px}body.school-site .hero-photo-main{width:84%;height:370px;right:2px;top:8px}body.school-site .hero-photo-small{width:42%;height:150px;bottom:17px;border-width:5px}body.school-site .hero-visual .hero-image-card{right:0!important;max-width:255px;padding:12px!important}body.school-site .hero-floating-badge{top:22px;left:0}}
+@media(max-width:420px){body.school-site .hero-trust{display:grid;grid-template-columns:1fr 1fr}body.school-site .hero-trust .trust-item:last-child{grid-column:1/-1}body.school-site .hero-visual{min-height:360px}body.school-site .hero-photo-main{height:315px;border-radius:24px}body.school-site .hero-photo-small{height:125px;width:43%;border-radius:18px}body.school-site .hero-floating-badge{padding:9px 11px}body.school-site .hero-visual .hero-image-card{max-width:220px;gap:8px}body.school-site .hero-card-icon{width:32px;height:32px;flex-basis:32px}}
+html[data-theme="dark"] body.school-site .hero{background:radial-gradient(ellipse at 84% 12%,rgba(22,134,91,.12),transparent 29%),linear-gradient(135deg,#102437,#101d2a 70%,#172720)!important}
+html[data-theme="dark"] body.school-site .hero-label,html[data-theme="dark"] body.school-site .hero-floating-badge,html[data-theme="dark"] body.school-site .hero-visual .hero-image-card{background:rgba(20,39,55,.95)!important;border-color:#294459!important}
+html[data-theme="dark"] body.school-site .hero-floating-badge strong,html[data-theme="dark"] body.school-site .hero-visual .hero-image-card strong,html[data-theme="dark"] body.school-site .trust-item strong{color:#e7eff7!important}
+html[data-theme="dark"] body.school-site .hero-content>p,html[data-theme="dark"] body.school-site .hero-floating-badge small,html[data-theme="dark"] body.school-site .hero-visual .hero-image-card span:not(.hero-card-icon){color:#b5c6d5!important}
+html[data-theme="dark"] body.school-site .trust-item{background:rgba(20,39,55,.8)!important;border-color:#294459!important}
+html[data-theme="dark"] body.school-site .hero-photo-small{border-color:#102437}
