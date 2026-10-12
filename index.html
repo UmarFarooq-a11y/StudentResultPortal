@@ -10,12 +10,13 @@
 
     <meta name="description"
           content="Official website of Pakistan English Grammar High School.">
-    <meta name="theme-color" content="#173b5e">
+    <meta name="theme-color" content="#f7fbff">
 
     <title>Pakistan English Grammar High School</title>
 
     <link rel="stylesheet" href="home.css">
 <link rel="stylesheet" href="school-ui.css?v=20261009-6">
+    <link rel="stylesheet" href="theme.css">
 </head>
 
 
@@ -72,6 +73,7 @@
                 Student Portal
                 <span>↗</span>
             </a>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch theme"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button>
 
         </div>
 
@@ -170,24 +172,35 @@
 
 
 
-                <div class="hero-image">
+                <div class="hero-image hero-visual">
 
-                    <img
-                        src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=90"
-                        alt="School students learning together in a bright classroom" loading="eager" fetchpriority="high">
+                    <div class="hero-photo-main">
+                        <img
+                            src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1400&q=90"
+                            alt="School students learning together in a bright classroom" loading="eager" fetchpriority="high">
+                    </div>
 
+                    <div class="hero-photo-small">
+                        <img
+                            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=700&q=85"
+                            alt="Students celebrating an educational milestone" loading="eager">
+                    </div>
 
                     <div class="hero-image-card">
-
-                        <strong>
-                            Education that matters.
-                        </strong>
-
-                        <span>
-                            Knowledge • Character • Confidence
-                        </span>
-
+                        <span class="hero-card-icon">✦</span>
+                        <div>
+                            <strong>Every student can shine.</strong>
+                            <span>Knowledge · Character · Confidence</span>
+                        </div>
                     </div>
+
+                    <div class="hero-floating-badge">
+                        <span class="hero-badge-dot"></span>
+                        <div><strong>Learn. Grow. Achieve.</strong><small>A brighter future starts here</small></div>
+                    </div>
+
+                    <div class="hero-decor hero-decor-one"></div>
+                    <div class="hero-decor hero-decor-two"></div>
 
                 </div>
 
@@ -323,6 +336,37 @@
 
 
         <!-- =========================
+             LEARNING GALLERY
+        ========================== -->
+
+        <section class="learning-gallery" aria-labelledby="gallery-title">
+            <div class="container">
+                <div class="gallery-heading">
+                    <div>
+                        <span class="section-label">LEARNING IN ACTION</span>
+                        <h2 id="gallery-title">More than lessons.<br><span>A place to grow.</span></h2>
+                    </div>
+                    <p>Curiosity, collaboration and confidence are part of every student's journey.</p>
+                </div>
+                <div class="gallery-grid">
+                    <article class="gallery-card gallery-card-large">
+                        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1100&q=85" alt="Students working together in a classroom" loading="lazy">
+                        <div class="gallery-caption"><span>01 / COLLABORATION</span><h3>Better together</h3><p>Learning through ideas, questions and teamwork.</p></div>
+                    </article>
+                    <article class="gallery-card">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85" alt="Students reading and learning" loading="lazy">
+                        <div class="gallery-caption"><span>02 / CURIOSITY</span><h3>Keep exploring</h3><p>Building a habit of asking why.</p></div>
+                    </article>
+                    <article class="gallery-card">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=85" alt="Students celebrating an academic milestone" loading="lazy">
+                        <div class="gallery-caption"><span>03 / ACHIEVEMENT</span><h3>Every step counts</h3><p>Recognising progress, effort and growth.</p></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =========================
              ABOUT
         ========================== -->
 
@@ -334,7 +378,7 @@
                 <div class="about-image">
 
                     <img
-                        src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1100&q=85"
+                        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1100&q=85"
                         alt="Students studying in a classroom">
 
                     <div class="image-tag">
@@ -714,6 +758,7 @@
     </footer>
 
 
+<script src="theme.js"></script>
 </body>
 
 </html>

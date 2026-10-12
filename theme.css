@@ -1,0 +1,229 @@
+/* Shared theme and visual polish for StudentResultPortal */
+:root{
+  color-scheme:light;
+  --sr-blue:#168bd2;
+  --sr-blue-deep:#126da9;
+  --sr-green:#16865b;
+  --sr-yellow:#f2c94c;
+  --sr-ink:#17324b;
+  --sr-muted:#63788b;
+  --sr-surface:#ffffff;
+  --sr-surface-soft:#f4f9fd;
+  --sr-border:#dceaf4;
+  --sr-shadow:0 14px 38px rgba(24,67,101,.08);
+}
+html{scroll-behavior:smooth}
+body{transition:background-color .22s ease,color .22s ease}
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:40px;padding:9px 12px;border:1px solid var(--sr-border);
+  border-radius:999px;background:#fff;color:#17466d;font:700 12px/1.2 inherit;
+  font-family:inherit;cursor:pointer;white-space:nowrap;transition:all .2s ease;
+}
+.theme-toggle:hover{border-color:var(--sr-blue);transform:translateY(-1px)}
+.theme-icon{font-size:17px;line-height:1}
+body.school-site .navbar,body.results-page .portal-nav,body:not(.school-site):not(.results-page) .topbar{gap:12px}
+body.school-site .nav,body.school-site .menu{align-items:center}
+body.school-site .nav a,body.school-site .menu a,body.results-page .portal-nav nav a,body:not(.school-site):not(.results-page) .topbar nav a{white-space:nowrap}
+body.school-site .hero h1 strong,body.school-site .hero h1 span,
+body.school-site .about-hero h1 span,body.school-site .about-text h2 span{color:var(--sr-blue)!important}
+body.school-site .hero-label span{background:var(--sr-green)!important}
+body.school-site .button-primary,body.school-site .header-button,body.school-site .cta-button,
+body.school-site .result-btn,body.school-site .simple-button,body.school-site .btn.primary,
+body:not(.school-site):not(.results-page) .top-action,body:not(.school-site):not(.results-page) .button-gold,
+body.results-page #searchBtn,body.results-page #printBtn{
+  background:var(--sr-blue)!important;border-color:var(--sr-blue)!important;color:#fff!important
+}
+body.school-site .service-card.featured{border-top:3px solid var(--sr-green)!important}
+body.school-site .service-card:nth-child(2){border-top:3px solid var(--sr-blue)!important}
+body.school-site .service-card:nth-child(3){border-top:3px solid var(--sr-yellow)!important}
+body.school-site .service-number{background:#e9f7f0!important;color:var(--sr-green)!important}
+body.school-site .learning-list>div{border-left-color:var(--sr-green)!important}
+body.school-site .stats{background:linear-gradient(110deg,#1477b7,#16865b)!important}
+body.school-site .cta-content{background:linear-gradient(115deg,#eaf6fd 0%,#fff 70%,#fff9df 100%)!important}
+body.school-site .hero-image-card{border-left-color:var(--sr-green)!important}
+body:not(.school-site):not(.results-page) .hero .eyebrow:before{background:var(--sr-green)!important}
+body:not(.school-site):not(.results-page) .service-item>span,
+body:not(.school-site):not(.results-page) .skill>span,
+body:not(.school-site):not(.results-page) .year{color:var(--sr-green)!important}
+body:not(.school-site):not(.results-page) .identity-card li:before{color:var(--sr-green)!important}
+body.results-page .portal-nav{display:flex;align-items:center;flex-wrap:wrap}
+body.results-page .container>.header{padding:34px 0 22px}
+body.results-page .header h1{letter-spacing:-.04em}
+body.results-page .search-box{border-top:4px solid var(--sr-blue)!important}
+body.results-page .summary-box:nth-child(1){border-top:3px solid var(--sr-blue)!important}
+body.results-page .summary-box:nth-child(2){border-top:3px solid var(--sr-green)!important}
+body.results-page .summary-box:nth-child(3){border-top:3px solid var(--sr-yellow)!important}
+body.results-page .summary-box:nth-child(4){border-top:3px solid var(--sr-green)!important}
+body.results-page .result-header{border-bottom-color:var(--sr-blue)!important}
+body.results-page .result-table th{background:#17466d!important}
+body.results-page .portal-mark{background:var(--sr-blue)!important}
+body.results-page .portal-nav nav a.active{background:#eaf6fd!important;color:var(--sr-blue-deep)!important}
+body:not(.school-site):not(.results-page) .topbar{display:flex;align-items:center;flex-wrap:wrap}
+@media(max-width:900px){
+  .theme-toggle{min-height:36px;padding:8px 10px}
+  body.school-site .navbar .theme-toggle{order:4}
+  body.results-page .portal-nav .theme-toggle{order:4}
+  body:not(.school-site):not(.results-page) .topbar .theme-toggle{order:4}
+}
+@media(max-width:600px){
+  .theme-toggle .theme-label{display:none}
+  .theme-toggle{width:40px;height:40px;padding:8px}
+}
+/* Dark theme is opt-in; the default is always the light theme. */
+html[data-theme="dark"]{color-scheme:dark}
+html[data-theme="dark"] body{background:#0c1723!important;color:#e7eff7!important}
+html[data-theme="dark"] body.school-site .header,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .topbar,
+html[data-theme="dark"] body.results-page .portal-nav{background:#111f2d!important;border-color:#20384b!important;box-shadow:0 5px 22px rgba(0,0,0,.18)!important}
+html[data-theme="dark"] body.school-site .logo-text strong,
+html[data-theme="dark"] body.school-site .logo-text span,
+html[data-theme="dark"] body.school-site .nav a,
+html[data-theme="dark"] body.school-site .menu a,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .brand strong,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .brand small,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .topbar nav a,
+html[data-theme="dark"] body.results-page .portal-brand strong,
+html[data-theme="dark"] body.results-page .portal-brand small,
+html[data-theme="dark"] body.results-page .portal-nav nav a{color:#dce8f3!important}
+html[data-theme="dark"] body.school-site .nav a.active,
+html[data-theme="dark"] body.school-site .menu a.active,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .topbar nav a.active,
+html[data-theme="dark"] body.results-page .portal-nav nav a.active{background:#183a52!important;color:#8dd2ff!important}
+html[data-theme="dark"] .theme-toggle{background:#172b3d;color:#e7eff7;border-color:#2c465b}
+html[data-theme="dark"] body.school-site .hero,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .hero,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .closing,
+html[data-theme="dark"] body.school-site .home-cta{background:linear-gradient(120deg,#102437,#101d2a 70%,#22251f)!important;color:#e7eff7!important}
+html[data-theme="dark"] body.school-site .services,
+html[data-theme="dark"] body.school-site .about-home,
+html[data-theme="dark"] body.school-site .learning,
+html[data-theme="dark"] body.school-site .about-introduction,
+html[data-theme="dark"] body.school-site .school-values,
+html[data-theme="dark"] body.school-site .learning-section,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .intro,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .services-section,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .skills{background:#0c1723!important;color:#e7eff7!important}
+html[data-theme="dark"] body.school-site .hero h1,
+html[data-theme="dark"] body.school-site .section-top h2,
+html[data-theme="dark"] body.school-site .about-text h2,
+html[data-theme="dark"] body.school-site .learning-text h2,
+html[data-theme="dark"] body.school-site .about-hero h1,
+html[data-theme="dark"] body.school-site .section-heading h2,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .hero h1,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .intro h2,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .section-head h2,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .closing h2{color:#eef6ff!important}
+html[data-theme="dark"] body.school-site p,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) p,
+html[data-theme="dark"] body.school-site .hero-trust span,
+html[data-theme="dark"] body.school-site .stat p{color:#b8c9d9!important}
+html[data-theme="dark"] body.school-site .service-card,
+html[data-theme="dark"] body.school-site .value-card,
+html[data-theme="dark"] body.school-site .faculty-card,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .identity-card,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .service-item,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .skill,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .timeline article{background:#122232!important;color:#e7eff7!important;border-color:#294255!important;box-shadow:0 12px 30px rgba(0,0,0,.15)!important}
+html[data-theme="dark"] body.school-site .service-content h3,
+html[data-theme="dark"] body.school-site .service-content p,
+html[data-theme="dark"] body.school-site .trust-item strong,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .identity-card h2,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .service-item h3,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .skill h3,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) .timeline h3{color:#e7eff7!important}
+html[data-theme="dark"] body.school-site .learning-list>div{background:#13283a!important;border-left-color:var(--sr-green)!important}
+html[data-theme="dark"] body.school-site .cta-content{background:#122232!important;border-color:#294255!important}
+html[data-theme="dark"] body.school-site .footer,
+html[data-theme="dark"] body.school-site .footer-grid,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) footer,
+html[data-theme="dark"] body.results-page .site-footer{background:#08121c!important;color:#dce8f3!important;border-color:#1d4057!important}
+html[data-theme="dark"] body.school-site .copyright,
+html[data-theme="dark"] body.school-site .footer-menu a,
+html[data-theme="dark"] body.school-site .footer-brand p,
+html[data-theme="dark"] body:not(.school-site):not(.results-page) footer p{color:#c0d0de!important}
+html[data-theme="dark"] body.results-page .container>.header h1,
+html[data-theme="dark"] body.results-page .container>.header h2{color:#edf6ff!important}
+html[data-theme="dark"] body.results-page .container>.header h2,
+html[data-theme="dark"] body.results-page .portal-kicker{color:#b7cad9!important}
+html[data-theme="dark"] body.results-page .search-box,
+html[data-theme="dark"] body.results-page .result-card{background:#122232!important;color:#e7eff7!important;border-color:#294255!important}
+html[data-theme="dark"] body.results-page .input-group label{color:#d6e3ef!important}
+html[data-theme="dark"] body.results-page .input-group input,
+html[data-theme="dark"] body.results-page .input-group select{background:#0c1723!important;color:#e7eff7!important;border-color:#365166!important}
+html[data-theme="dark"] body.results-page .result-sheet{background:#fff!important;color:#17324b!important;border-color:#dfe7ef!important}
+html[data-theme="dark"] body.results-page .result-sheet *{color:inherit}
+html[data-theme="dark"] body.results-page .result-sheet .institution-name{color:#17466d!important}
+html[data-theme="dark"] body.results-page .result-sheet .result-title{color:#40556a!important}
+html[data-theme="dark"] body.results-page .result-sheet .result-subtitle,
+html[data-theme="dark"] body.results-page .result-sheet .meta-item span,
+html[data-theme="dark"] body.results-page .result-sheet .summary-box span,
+html[data-theme="dark"] body.results-page .result-sheet .signature-box{color:#63788b!important}
+html[data-theme="dark"] body.results-page .result-sheet .meta-item{background:#f5f8fb!important;border-color:#e2e9f0!important}
+html[data-theme="dark"] body.results-page .result-sheet .meta-item strong,
+html[data-theme="dark"] body.results-page .result-sheet .summary-box strong{color:#17466d!important}
+html[data-theme="dark"] body.results-page .result-table td{color:#27394b!important}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Contemporary education photography gallery */
+.learning-gallery{padding:clamp(64px,8vw,104px) 0;background:#fff}
+.gallery-heading{display:flex;align-items:end;justify-content:space-between;gap:32px;margin-bottom:34px}
+.gallery-heading h2{margin:10px 0 0;color:#17324b;font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-.045em}
+.gallery-heading h2 span{color:#168bd2}
+.gallery-heading>p{max-width:340px;margin:0 0 4px;color:#63788b;font-size:15px}
+.gallery-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:18px;align-items:stretch}
+.gallery-card{position:relative;isolation:isolate;overflow:hidden;min-height:350px;border-radius:22px;background:#dceaf4;box-shadow:0 14px 36px rgba(24,67,101,.1)}
+.gallery-card:after{content:"";position:absolute;inset:25% 0 0;z-index:0;background:linear-gradient(180deg,transparent 0%,rgba(9,28,44,.88) 100%)}
+.gallery-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+.gallery-card:hover img{transform:scale(1.055)}
+.gallery-caption{position:absolute;z-index:1;left:22px;right:20px;bottom:21px;color:white}
+.gallery-caption>span{font-size:10px;font-weight:800;letter-spacing:1.7px;color:#d9f2ff}
+.gallery-caption h3{margin:8px 0 5px;color:white;font-size:clamp(1.25rem,2vw,1.65rem);letter-spacing:-.025em}
+.gallery-caption p{margin:0;color:rgba(255,255,255,.86);font-size:13px;line-height:1.5}
+body[data-theme="dark"] .learning-gallery{background:#0c1723}
+body[data-theme="dark"] .gallery-heading h2{color:#edf6ff}
+body[data-theme="dark"] .gallery-heading>p{color:#b0c0cf}
+@media(max-width:850px){.gallery-grid{grid-template-columns:1fr 1fr}.gallery-card-large{grid-column:1/-1;min-height:380px}.gallery-card{min-height:310px}.gallery-heading{align-items:start;flex-direction:column;gap:14px}}
+@media(max-width:560px){.learning-gallery{padding:58px 0}.gallery-grid{grid-template-columns:1fr;gap:14px}.gallery-card-large{grid-column:auto;min-height:320px}.gallery-card{min-height:300px}.gallery-heading>p{font-size:14px}}
+
+
+/* Contemporary education-platform hero: editorial photo collage */
+body.school-site .hero{position:relative;overflow:hidden;padding:clamp(58px,7vw,96px) 0 82px!important;background:radial-gradient(ellipse at 84% 12%,rgba(36,177,133,.12),transparent 29%),radial-gradient(ellipse at 12% 92%,rgba(242,201,76,.14),transparent 27%),linear-gradient(135deg,#f7fbff 0%,#edf7ff 52%,#f8fcf8 100%)!important}
+body.school-site .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.96fr)!important;gap:clamp(30px,5vw,76px)!important}
+body.school-site .hero-label{display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:100%;padding:9px 13px;border:1px solid #d8eaf6;border-radius:999px;background:rgba(255,255,255,.8);color:#16865b!important;font-size:10px!important;letter-spacing:1.35px!important}
+body.school-site .hero-label span{width:7px!important;height:7px!important;border-radius:50%;margin:0!important;background:#16865b!important}
+body.school-site .hero h1{max-width:640px;font-size:clamp(2.8rem,5.1vw,4.55rem)!important;line-height:1.04!important;letter-spacing:-.065em!important}
+body.school-site .hero-content>p{max-width:510px!important;font-size:16px!important;line-height:1.8!important;color:#526b80!important}
+body.school-site .hero-buttons{gap:10px!important}
+body.school-site .hero-buttons .button{border-radius:12px!important;padding:14px 18px!important}
+body.school-site .hero-buttons .button-outline{background:rgba(255,255,255,.76)!important}
+body.school-site .hero-trust{gap:10px!important;margin-top:26px!important}
+body.school-site .trust-item{min-width:0;flex:1;padding:13px 14px!important;border:1px solid rgba(210,229,241,.95)!important;border-radius:14px!important;background:rgba(255,255,255,.72)!important;box-shadow:none!important}
+body.school-site .trust-item strong{font-size:16px!important;color:#17324b!important}
+body.school-site .trust-item span{font-size:10px!important;line-height:1.45!important;color:#63788b!important}
+body.school-site .hero-visual{min-height:510px;isolation:isolate;display:block!important;position:relative!important;padding:18px 16px 35px 26px}
+body.school-site .hero-photo-main{position:absolute;z-index:1;top:8px;right:4px;width:83%;height:440px;border-radius:32px;overflow:hidden;background:#d9eaf5;box-shadow:0 24px 65px rgba(29,78,110,.17);transform:rotate(1.2deg)}
+body.school-site .hero-photo-main img{width:100%;height:100%;object-fit:cover!important;object-position:center!important;border-radius:0!important;box-shadow:none!important}
+body.school-site .hero-photo-small{position:absolute;z-index:3;left:0;bottom:24px;width:43%;height:190px;overflow:hidden;border:7px solid #f7fbff;border-radius:24px;background:#dcece6;box-shadow:0 18px 45px rgba(20,56,83,.17);transform:rotate(-3deg)}
+body.school-site .hero-photo-small img{width:100%;height:100%;object-fit:cover!important;border-radius:0!important;box-shadow:none!important}
+body.school-site .hero-visual .hero-image-card{z-index:4;left:auto!important;right:-5px!important;bottom:0!important;display:flex;align-items:center;gap:12px;max-width:285px;padding:15px 18px!important;border:1px solid rgba(255,255,255,.85)!important;border-left:1px solid rgba(255,255,255,.85)!important;border-radius:16px!important;background:rgba(255,255,255,.94)!important;box-shadow:0 16px 45px rgba(18,54,82,.15)!important;backdrop-filter:blur(14px)}
+body.school-site .hero-card-icon{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:12px;background:#e5f7ef;color:#16865b;font-size:20px}
+body.school-site .hero-visual .hero-image-card strong{font-size:12px!important;color:#17324b!important}
+body.school-site .hero-visual .hero-image-card span:not(.hero-card-icon){display:block;margin-top:3px;font-size:10px!important;color:#63788b!important}
+body.school-site .hero-floating-badge{position:absolute;z-index:4;top:35px;left:0;display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px solid rgba(255,255,255,.9);border-radius:15px;background:rgba(255,255,255,.95);box-shadow:0 14px 38px rgba(18,54,82,.13);backdrop-filter:blur(12px)}
+body.school-site .hero-badge-dot{width:10px;height:10px;border-radius:50%;background:#20a56f;box-shadow:0 0 0 5px #e3f7ed}
+body.school-site .hero-floating-badge strong{display:block;font-size:11px;color:#17324b}
+body.school-site .hero-floating-badge small{display:block;margin-top:2px;font-size:10px;color:#63788b}
+body.school-site .hero-decor{position:absolute;z-index:-1;border-radius:50%;pointer-events:none}
+body.school-site .hero-decor-one{width:130px;height:130px;right:-12px;top:-5px;background:rgba(242,201,76,.34)}
+body.school-site .hero-decor-two{width:80px;height:80px;left:20%;bottom:10px;background:rgba(22,134,91,.14)}
+@media(max-width:1050px){body.school-site .hero-grid{gap:28px!important}body.school-site .hero-visual{min-height:450px}body.school-site .hero-photo-main{height:390px}body.school-site .hero-photo-small{height:155px}}
+@media(max-width:760px){body.school-site .hero{padding:52px 0 58px!important}body.school-site .hero-grid{grid-template-columns:1fr!important;gap:28px!important}body.school-site .hero h1{font-size:clamp(2.6rem,11vw,4rem)!important}body.school-site .hero-visual{width:100%;max-width:560px;min-height:430px;margin:0 auto;padding:12px 10px 30px 18px}body.school-site .hero-photo-main{width:84%;height:370px;right:2px;top:8px}body.school-site .hero-photo-small{width:42%;height:150px;bottom:17px;border-width:5px}body.school-site .hero-visual .hero-image-card{right:0!important;max-width:255px;padding:12px!important}body.school-site .hero-floating-badge{top:22px;left:0}}
+@media(max-width:420px){body.school-site .hero-trust{display:grid;grid-template-columns:1fr 1fr}body.school-site .hero-trust .trust-item:last-child{grid-column:1/-1}body.school-site .hero-visual{min-height:360px}body.school-site .hero-photo-main{height:315px;border-radius:24px}body.school-site .hero-photo-small{height:125px;width:43%;border-radius:18px}body.school-site .hero-floating-badge{padding:9px 11px}body.school-site .hero-visual .hero-image-card{max-width:220px;gap:8px}body.school-site .hero-card-icon{width:32px;height:32px;flex-basis:32px}}
+html[data-theme="dark"] body.school-site .hero{background:radial-gradient(ellipse at 84% 12%,rgba(22,134,91,.12),transparent 29%),linear-gradient(135deg,#102437,#101d2a 70%,#172720)!important}
+html[data-theme="dark"] body.school-site .hero-label,html[data-theme="dark"] body.school-site .hero-floating-badge,html[data-theme="dark"] body.school-site .hero-visual .hero-image-card{background:rgba(20,39,55,.95)!important;border-color:#294459!important}
+html[data-theme="dark"] body.school-site .hero-floating-badge strong,html[data-theme="dark"] body.school-site .hero-visual .hero-image-card strong,html[data-theme="dark"] body.school-site .trust-item strong{color:#e7eff7!important}
+html[data-theme="dark"] body.school-site .hero-content>p,html[data-theme="dark"] body.school-site .hero-floating-badge small,html[data-theme="dark"] body.school-site .hero-visual .hero-image-card span:not(.hero-card-icon){color:#b5c6d5!important}
+html[data-theme="dark"] body.school-site .trust-item{background:rgba(20,39,55,.8)!important;border-color:#294459!important}
+html[data-theme="dark"] body.school-site .hero-photo-small{border-color:#102437}

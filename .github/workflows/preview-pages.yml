@@ -1,0 +1,33 @@
+name: Preview Student Result Portal
+
+on:
+  push:
+    branches:
+      - redesign/modern-light-dark-theme
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout redesign branch
+        uses: actions/checkout@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload website files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+      - name: Publish preview
+        id: deployment
+        uses: actions/deploy-pages@v4
